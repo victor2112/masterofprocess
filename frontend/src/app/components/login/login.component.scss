@@ -1,0 +1,40 @@
+.contenido {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+
+
+  }
+
+.cuadro {
+    width: 300px;
+    background-color: rgb(96, 194, 240);
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: center;
+
+  }
+
+
+  .subcuadro {
+    margin-top: 10px;
+    margin-left: 50px;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: center;
+
+  }
+
+  .boton {
+    background-color: rgb(102, 102, 102);
+    
+}
+
+
+
+  

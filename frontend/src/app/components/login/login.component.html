@@ -1,0 +1,26 @@
+<body>
+    <div class="contenido">
+        <div class="cuadro">
+            <form [formGroup]="form">
+                <div class="subcuadro">
+                Usuario
+                <input type="text" formControlName="usuario"/>
+                </div>
+                <div class="subcuadro">
+                Password
+                <input type="text"  formControlName="password"/>
+                </div>
+                <br/>
+                <div class="subcuadro">
+                <button class="boton" (click)="irA('menu')">INGRESAR AL SISTEMA</button>
+                </div>
+                <div class="subcuadro">
+                <button class="boton" (click)="irA('registrar')">REGISTRAR USUARIO</button>
+                </div>
+                <br/>
+            </form>
+
+                
+        </div>
+    </div>
+</body>

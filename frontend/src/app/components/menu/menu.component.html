@@ -1,0 +1,20 @@
+<div id="menu">
+    <h2 id="titulo">Proyecto FAW</h2>
+        
+    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="irA('ingresar')">
+            <mat-icon>bookmark_add</mat-icon>
+            <span>Ingresar Comic</span>
+        </button>
+        <button mat-menu-item (click)="irA('consultar')">
+            <mat-icon>list</mat-icon>
+            <span>Consultar Comics</span>
+        </button>
+        <button mat-menu-item (click)="irA('login')">
+            <mat-icon>logout</mat-icon>
+            <span>Salir</span>
+        </button>
+    </mat-menu>
+
+</div>

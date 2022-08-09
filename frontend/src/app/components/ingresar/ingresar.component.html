@@ -1,0 +1,36 @@
+<app-menu></app-menu>
+<body>
+    <div class="contenido">
+        <div class="cuadro">
+            <form [formGroup]="form">
+                <div class="subcuadro">
+                    <h1>Nombre&nbsp;&nbsp;&nbsp;</h1>
+                    <input type="text" size="40px"  formControlName="nombre">
+                    
+                </div>
+                <div class="subcuadro">
+                    <h1>Año de Impresión&nbsp;&nbsp;&nbsp;</h1>
+                    <input type="text" size="40px"  formControlName="año">
+                    
+                </div>
+                <div class="subcuadro">
+                    <h1>Sinopsis&nbsp;&nbsp;&nbsp;</h1>
+                    <input type="text" size="40px"  formControlName="sinopsis">
+                    
+                </div>    
+                <div class="subcuadro">
+                    <h1>Editorial&nbsp;&nbsp;&nbsp;</h1>
+                    <select formControlName="editorial" id="select">
+                    <option value="MARVEL">MARVEL</option> 
+                    <option value="DC">DC</option> 
+                    <option value="IMAGE">IMAGE</option>
+                    </select>
+                </div>
+        
+                <div class="button">
+                    <button class="boton" (click)="grabar()">GRABAR COMIC</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

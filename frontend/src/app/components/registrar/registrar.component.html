@@ -1,0 +1,38 @@
+<body>
+    <div class="contenido">
+        <div class="cuadro">
+            <form [formGroup]="form">
+                <div class="subcuadro">
+                    <h1>Nombre&nbsp;&nbsp;&nbsp;</h1>
+                    <input type="text" size="40px"  formControlName="nombre">
+                    
+                </div>
+                <div class="subcuadro">
+                    <h1>Usuario&nbsp;&nbsp;&nbsp;</h1>
+                    <input type="text" size="40px"  formControlName="usuario">
+                    
+                </div>
+                <div class="subcuadro">
+                    <h1>Password&nbsp;&nbsp;&nbsp;</h1>
+                    <input type="text" size="40px"  formControlName="password">
+                    
+                </div>    
+                <div class="subcuadro">
+                    <h1>Fecha Nacimiento&nbsp;&nbsp;&nbsp;</h1>
+                    <input type="date" size="40px"  formControlName="fecha_nac">
+                    
+                </div>
+                <div class="subcuadro">
+                    <h1>Sexo&nbsp;&nbsp;&nbsp;</h1>
+                    
+                        <input type="radio" value="masculino"  formControlName="sexo"><h3>Masculino</h3>
+                        <input type="radio" value="femenino"  formControlName="sexo"><h3>Femenino</h3>
+                    
+                </div>
+                <div class="button">
+                    <button class="boton" (click)="Grabar()">GRABAR USUARIO</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

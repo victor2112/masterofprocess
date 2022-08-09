@@ -1,0 +1,26 @@
+
+<app-menu></app-menu>
+
+<body>
+    <div id="contenido">
+        
+        <table cellspacing="0" > 
+            <tr *ngFor="let comic of comics" >
+                <td id="fila" >
+                    <img src="./../../components/consultar/DC.jpg">
+                    {{comic.editorial}}
+                </td>
+                <td id="fila">
+                    {{comic.nombre}}<br/><br/>
+                    {{comic.anio}}<br/><br/>
+                    {{comic.sinopsis}}
+                </td>
+                <td id="fila">
+                    
+                </td>
+            </tr>
+
+        </table>
+
+    </div> 
+</body>

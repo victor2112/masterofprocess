@@ -1,0 +1,48 @@
+.contenido {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+
+
+  }
+
+.cuadro {
+    width: 500px;
+    background-color: rgb(96, 194, 240);
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: center;
+
+  }
+
+
+  .subcuadro {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    align-content: space-around;
+    justify-content: space-between;
+  }
+
+  .boton {
+    width: 300px;
+    margin-bottom: 15px;
+
+
+    background-color: rgb(102, 102, 102);
+    
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+  
