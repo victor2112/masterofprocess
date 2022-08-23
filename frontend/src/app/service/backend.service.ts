@@ -8,6 +8,7 @@ import { SaveComicResponse } from '../models/SaveComicResponse';
 import { SaveUsuario } from '../models/SaveUsuario';
 import { SaveUsuarioResponse } from '../models/SaveUsuarioResponse';
 import { UsuarioList } from '../models/UsuarioList';
+import { GeneralResponse } from '../models/GeneralResponse';
 
 
 const BE_API = environment.urlBackEnd;
@@ -26,7 +27,12 @@ export class BackendService {
     
   }
 
-  
+  // Modulo Login
+  verificaUsuario(usuario: string, password: string) {
+    let url: string = BE_API + '/usuario/' + usuario + '/' + password;
+    return this.http.get<GeneralResponse>(url, httpOptions);
+  }
+
   getUsuario() {
     let url:string = BE_API + '/usuario';
     return this.http.get<UsuarioList>(url, httpOptions);
@@ -37,10 +43,7 @@ export class BackendService {
     return this.http.get<ComicList>(url, httpOptions);
   }
 
-  verificaUsuario(usuario: string, password: string) {
-    let url: string = BE_API + '/usuario/usuario/' + usuario + '/' + password;
-    return this.http.get<UsuarioList>(url, httpOptions);
-  }
+  
 
   insertUsuario(nombre: string, user: string, password: string, fecha_nacimiento: Date, sexo: string) {
     let url:string = BE_API + '/usuario';

@@ -4,34 +4,39 @@ module.exports = (app) => {
 
     // Get de todos los usuarios
     app.get("/usuario", (req, res) => {
-        let query = "SELECT idUsuario, nombre, departamento, idTipoUsuario, usuario, contraseña FROM usuarios";
+        let query = "SELECT idUsuario, nombre, departamento, idTipoUsuario, usuario, password, email FROM usuarios";
         conn.query(query, (err, rows, field) => {
             if (err) res.status(400).json({ status: 0, message: "No se pudo obtener informacion" });
-            else res.json({ status: 1, usuarios: rows });
+            else res.json({ status: 1, data: rows, message: "" });
         })
     });
 
     // Get de un usuario en particular
     app.get("/usuario/:usuario/:password", (req, res) => {
-        let query = `SELECT idUsuario, nombre, departamento, idTipoUsuario, usuario, contraseña ` +
+        let query = `SELECT idUsuario, nombre, departamento, idTipoUsuario, usuario, password, email ` +
             `FROM usuarios where usuario = '${req.params.usuario}' ` +
-            `and contraseña = '${req.params.password}'`;
+            `and password = '${req.params.password}'`;
         conn.query(query, (err, rows, field) => {
             if (err) res.status(400).json({ status: 0, message: "No se pudo obtener informacion" });
-            else res.json({ status: 1, usuarios: rows });
+            else {
+                console.log(rows);
+                res.json({ status: 1, data: rows, message: "OK" });
+            }
+
+
         })
     });
 
     // Post para crear un usuario
     app.post('/usuario', (req, res, next) => {
-        let query = `INSERT INTO usuarios (nombre, departamento, idTipoUsuario, usuario, contraseña) ` +
+        let query = `INSERT INTO usuarios (nombre, departamento, idTipoUsuario, usuario, password, email) ` +
             `VALUES ('${req.body.nombre}', '${req.body.departamento}', 2, ` +
-            `'${req.body.usuario}', '${req.body.contraseña}')`;
+            `'${req.body.usuario}', '${req.body.password}, ${req.body.email}')`;
         conn.query(query, (err, rows, cols) => {
             if (err) {
-                res.json({ status: 0, message: "Error en la db" });
+                res.json({ status: 0, data: rows, message: "Error en la db" });
             } else {
-                res.json({ status: 1, message: "Usuario insertado satisfactoriamente" });
+                res.json({ status: 1, data: rows, message: "Usuario insertado satisfactoriamente" });
             }
         });
     });
@@ -42,13 +47,14 @@ module.exports = (app) => {
             `departamento = '${req.body.departamento}', ` +
             `idTipoUsuario = '${req.body.idTipoUsuario}', ` +
             `usuario = '${req.body.usuario}', ` +
-            `contraseña = '${req.body.contraseña}' ` +
+            `password = '${req.body.password}', ` +
+            `email = '${req.body.email}' ` +
             `where idUsuario = '${req.params.idUsuario}'`;
         conn.query(query, (err, rows, cols) => {
             if (err) {
-                res.json({ status: 0, message: "Error en la db" });
+                res.json({ status: 0, data: rows, message: "Error en la db" });
             } else {
-                res.json({ status: 1, message: "Usuario modificado satisfactoriamente" });
+                res.json({ status: 1, data: rows, message: "Usuario modificado satisfactoriamente" });
             }
         });
     });
@@ -58,9 +64,9 @@ module.exports = (app) => {
         let query = `DELETE FROM usuarios WHERE idUsuario = '${req.params.idUsuario}'`;
         conn.query(query, (err, rows, cols) => {
             if (err) {
-                res.json({ status: 0, message: "Error en la db" });
+                res.json({ status: 0, data: rows, message: "Error en la db" });
             } else {
-                res.json({ status: 1, message: "Usuario eliminado satisfactoriamente" });
+                res.json({ status: 1, data: rows, message: "Usuario eliminado satisfactoriamente" });
             }
         });
     });
