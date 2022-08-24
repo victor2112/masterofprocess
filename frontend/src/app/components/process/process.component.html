@@ -2,7 +2,9 @@
     <div class="contenido">
         <!-- Toolbar -->
         <mat-toolbar class="app-header">
-            <div><a target="_blank" class="positronx">MasterOfProcess</a></div>
+            <div>
+                <a target="_blank" class="positronx"><img src="../../../assets/img/logo-nobackground.png"></a>
+            </div>
             <span class="nav-tool-items">
                 <a mat-button class="positronx"><mat-icon>build</mat-icon></a>
                 <a mat-button (click)="irA('login')" class="positronx"><mat-icon>logout</mat-icon></a>
@@ -12,30 +14,26 @@
         <p></p>
         <p></p>
 
-        <mat-card class="cuadro">
-            <mat-raised-card>
-                <mat-card role="button" (click)="irA('')" class="processCard">
-                    <mat-card-title>Master of Process</mat-card-title>
-                    <mat-card-subtitle>Name</mat-card-subtitle>
-                    <mat-card-actions align="end">
-                        <mat-card-item>AVAIBLE </mat-card-item>
-                        -
-                        <mat-card-item>TOTAL </mat-card-item>
-                    </mat-card-actions>
-                </mat-card>
+        <mat-card class="process">
+            <mat-card-title>Processes</mat-card-title>
+
+
+            <mat-raised-card class="cuadro">
+                <div *ngFor="let process of processes" class="subcuadro">
+
+                    <mat-card role="button" (click)="irA('')" class="processCard">
+                        <mat-card-title>{{process.nombreProceso}}</mat-card-title>
+                        <mat-card-subtitle>AVAIBLE: {{process.visibles}}</mat-card-subtitle>
+                        <mat-card-actions align="end">
+                            <mat-card-item>TOTAL: {{process.total}} </mat-card-item>
+                        </mat-card-actions>
+                    </mat-card>
+
+                    &nbsp;&nbsp;&nbsp;
+                </div>
             </mat-raised-card>
-            <p>&nbsp;&nbsp;&nbsp;</p>
 
 
-            <mat-card class="processCard">
-                <mat-card-title>Master of Process</mat-card-title>
-                <mat-card-subtitle>Name</mat-card-subtitle>
-                <mat-card-actions align="end">
-                    <mat-card-item>AVAIBLE </mat-card-item>
-                    -
-                    <mat-card-item>TOTAL </mat-card-item>
-                </mat-card-actions>
-            </mat-card>
 
 
 

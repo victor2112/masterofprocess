@@ -9,7 +9,7 @@ import { SaveUsuario } from '../models/SaveUsuario';
 import { SaveUsuarioResponse } from '../models/SaveUsuarioResponse';
 import { UsuarioList } from '../models/UsuarioList';
 import { GeneralResponse } from '../models/GeneralResponse';
-
+import { ProcessList } from '../models/ProcessList';
 
 const BE_API = environment.urlBackEnd;
 
@@ -36,6 +36,12 @@ export class BackendService {
   getUsuario() {
     let url:string = BE_API + '/usuario';
     return this.http.get<UsuarioList>(url, httpOptions);
+  }
+
+  // Modulo Process
+  getProcess(idProceso: number){
+    let url:string = BE_API + '/process/' + idProceso ;
+    return this.http.get<ProcessList>(url, httpOptions);
   }
 
   getComic() {
