@@ -22,10 +22,10 @@ export class RegistrarComponent implements OnInit {
               private router: Router) {
     this.form = this.fb.group({
       nombre: [''],
+      departamento: [''],
       usuario: [''],
       password: [''],
-      fecha_nac: [''],
-      sexo: ['']
+      email: ['']
     });
     
    }
@@ -34,18 +34,50 @@ export class RegistrarComponent implements OnInit {
   }
 
   Grabar() {
-    this.backend.insertUsuario(this.form.controls['nombre'].value, 
-      this.form.controls['usuario'].value,
-      this.form.controls['password'].value,
-      this.form.controls['fecha_nac'].value,
-      this.form.controls['sexo'].value).subscribe(x => {
-      alert(x.message);
-      if (x.message == "Usuario insertado satisfactoriamente") {
-        this.router.navigateByUrl('/login');
-      }
-      }
-    )
+    if (this.form.controls['nombre'].value.length > 0 && this.form.controls['departamento'].value.length > 0
+        && this.form.controls['usuario'].value.length > 0 && this.form.controls['password'].value.length > 0
+        && this.form.controls['email'].value.length) {
     
+        this.backend.insertUsuario(this.form.controls['nombre'].value, 
+        this.form.controls['departamento'].value,
+        this.form.controls['usuario'].value,
+        this.form.controls['password'].value,
+        this.form.controls['email'].value).subscribe(x => {
+        
+          if (x.status === 1) {
+            this.router.navigateByUrl('/login');
+          }
+        }
+      )
+
+    } else {
+      alert('Error, favor completar todos los campos');
+    }
+    
+  }
+
+
+
+  irA(ruta: string) {
+    if (ruta == 'dashboard') {
+      if (this.form.controls['usuario'].value.length > 0 && this.form.controls['password'].value.length > 0) {
+        this.backend.verificaUsuario(this.form.controls['usuario'].value, this.form.controls['password'].value).subscribe(x => {
+         
+          if (x.data.length > 0) {
+            this.router.navigateByUrl('/' + "menu");
+          } else {
+            alert('Usuario o contraseña incorrecta, favor intentar nuevamente');
+          }
+  
+        })
+      } else {
+        alert('Usuario o contraseña no completado, favor intentar nuevamente');
+      }
+  
+    } else {
+      this.router.navigateByUrl('/' + ruta);
+    }
+  
   }
 
 }

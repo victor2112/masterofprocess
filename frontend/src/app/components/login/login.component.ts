@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
 
 
 irA(ruta: string) {
-  if (ruta == 'dashboard') {
+  if (ruta == 'procesos') {
     if (this.form.controls['usuario'].value.length > 0 && this.form.controls['password'].value.length > 0) {
       this.backend.verificaUsuario(this.form.controls['usuario'].value, this.form.controls['password'].value).subscribe(x => {
         
@@ -63,7 +63,7 @@ irA(ruta: string) {
         //alert(x.message);
 
         if (x.data.length > 0) {
-          this.router.navigateByUrl('/' + "menu");
+          this.router.navigateByUrl('/' + ruta);
         } else {
           alert('Usuario o contraseña incorrecta, favor intentar nuevamente');
         }

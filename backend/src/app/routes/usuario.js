@@ -19,7 +19,7 @@ module.exports = (app) => {
         conn.query(query, (err, rows, field) => {
             if (err) res.status(400).json({ status: 0, message: "No se pudo obtener informacion" });
             else {
-                console.log(rows);
+                //console.log(rows);
                 res.json({ status: 1, data: rows, message: "OK" });
             }
 
@@ -31,7 +31,9 @@ module.exports = (app) => {
     app.post('/usuario', (req, res, next) => {
         let query = `INSERT INTO usuarios (nombre, departamento, idTipoUsuario, usuario, password, email) ` +
             `VALUES ('${req.body.nombre}', '${req.body.departamento}', 2, ` +
-            `'${req.body.usuario}', '${req.body.password}, ${req.body.email}')`;
+            `'${req.body.usuario}', '${req.body.password}', '${req.body.email}')`;
+
+        console.log(query);
         conn.query(query, (err, rows, cols) => {
             if (err) {
                 res.json({ status: 0, data: rows, message: "Error en la db" });

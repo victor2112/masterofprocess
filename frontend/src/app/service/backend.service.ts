@@ -45,10 +45,10 @@ export class BackendService {
 
   
 
-  insertUsuario(nombre: string, user: string, password: string, fecha_nacimiento: Date, sexo: string) {
+  insertUsuario(nombre: string, departamento: string, usuario: string, password: string, email: string) {
     let url:string = BE_API + '/usuario';
-    let param : SaveUsuario = new SaveUsuario(nombre, user, password, fecha_nacimiento, sexo);
-    return this.http.post<SaveUsuarioResponse>(url, param, httpOptions);
+    let param : SaveUsuario = new SaveUsuario(nombre, departamento, usuario, password, email);
+    return this.http.post<GeneralResponse>(url, param, httpOptions);
   }
   
   insertaComic(nombre: string, año: number, sinopsis: string, editorial: string, usuario: number) {

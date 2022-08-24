@@ -1,38 +1,43 @@
 <body>
     <div class="contenido">
-        <div class="cuadro">
-            <form [formGroup]="form">
-                <div class="subcuadro">
-                    <h1>Nombre&nbsp;&nbsp;&nbsp;</h1>
-                    <input type="text" size="40px"  formControlName="nombre">
-                    
-                </div>
-                <div class="subcuadro">
-                    <h1>Usuario&nbsp;&nbsp;&nbsp;</h1>
-                    <input type="text" size="40px"  formControlName="usuario">
-                    
-                </div>
-                <div class="subcuadro">
-                    <h1>Password&nbsp;&nbsp;&nbsp;</h1>
-                    <input type="text" size="40px"  formControlName="password">
-                    
-                </div>    
-                <div class="subcuadro">
-                    <h1>Fecha Nacimiento&nbsp;&nbsp;&nbsp;</h1>
-                    <input type="date" size="40px"  formControlName="fecha_nac">
-                    
-                </div>
-                <div class="subcuadro">
-                    <h1>Sexo&nbsp;&nbsp;&nbsp;</h1>
-                    
-                        <input type="radio" value="masculino"  formControlName="sexo"><h3>Masculino</h3>
-                        <input type="radio" value="femenino"  formControlName="sexo"><h3>Femenino</h3>
-                    
-                </div>
-                <div class="button">
-                    <button class="boton" (click)="Grabar()">GRABAR USUARIO</button>
-                </div>
-            </form>
+        <!-- Toolbar -->
+        <mat-toolbar class="app-header">
+            <div><a target="_blank" class="positronx">MasterOfProcess</a></div>
+            <span class="nav-tool-items">
+                <a mat-button (click)="irA('login')" class="positronx"><mat-icon>logout</mat-icon></a>
+            </span>
+        </mat-toolbar>
+        <p></p>
+        <p></p>
+        <p></p>
+
+
+        <div class="login-wrapper">
+            <mat-card class="box">
+                <mat-card-header>
+                    <mat-card-title>Register</mat-card-title>
+                </mat-card-header>
+                <form class="example-form" [formGroup]="form">
+                    <mat-card-content>
+                        <mat-form-field class="example-full-width">
+                            <input matInput formControlName="nombre" placeholder="Nombre">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input matInput formControlName="departamento" placeholder="Departamento">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input matInput formControlName="usuario" placeholder="Usuario">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input matInput formControlName="password" placeholder="Password" type="password">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input matInput formControlName="email" placeholder="Email" type="email">
+                        </mat-form-field>
+                    </mat-card-content>
+                    <button mat-stroked-button color="primary" class="btn-block" (click)="Grabar()">Create User</button>
+                </form>
+            </mat-card>
         </div>
     </div>
 </body>

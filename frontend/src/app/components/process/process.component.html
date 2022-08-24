@@ -1,0 +1,45 @@
+<body>
+    <div class="contenido">
+        <!-- Toolbar -->
+        <mat-toolbar class="app-header">
+            <div><a target="_blank" class="positronx">MasterOfProcess</a></div>
+            <span class="nav-tool-items">
+                <a mat-button class="positronx"><mat-icon>build</mat-icon></a>
+                <a mat-button (click)="irA('login')" class="positronx"><mat-icon>logout</mat-icon></a>
+            </span>
+        </mat-toolbar>
+        <p></p>
+        <p></p>
+        <p></p>
+
+        <mat-card class="cuadro">
+            <mat-raised-card>
+                <mat-card role="button" (click)="irA('')" class="processCard">
+                    <mat-card-title>Master of Process</mat-card-title>
+                    <mat-card-subtitle>Name</mat-card-subtitle>
+                    <mat-card-actions align="end">
+                        <mat-card-item>AVAIBLE </mat-card-item>
+                        -
+                        <mat-card-item>TOTAL </mat-card-item>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-raised-card>
+            <p>&nbsp;&nbsp;&nbsp;</p>
+
+
+            <mat-card class="processCard">
+                <mat-card-title>Master of Process</mat-card-title>
+                <mat-card-subtitle>Name</mat-card-subtitle>
+                <mat-card-actions align="end">
+                    <mat-card-item>AVAIBLE </mat-card-item>
+                    -
+                    <mat-card-item>TOTAL </mat-card-item>
+                </mat-card-actions>
+            </mat-card>
+
+
+
+        </mat-card>
+
+    </div>
+</body>

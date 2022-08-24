@@ -17,6 +17,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
+import { ProcessComponent } from './components/process/process.component';
+
 
 
 
@@ -27,7 +29,8 @@ import { AngularMaterialModule } from './angular-material.module';
     IngresarComponent,
     ConsultarComponent,
     LoginComponent,
-    RegistrarComponent
+    RegistrarComponent,
+    ProcessComponent
   ],
   imports: [
     BrowserModule,

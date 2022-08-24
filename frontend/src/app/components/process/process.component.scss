@@ -1,0 +1,65 @@
+body {
+    background-color: steelblue;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido {
+    background-color: steelblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.processCard {
+    width: 200px;
+    height: 80px;
+    max-width: 250px;
+    cursor: pointer;
+}
+
+.processCard:focus {
+    background-color: #96121293;
+}
+
+.cuadro {
+    width: 90%;
+    background-color: rgb(141, 184, 219);
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+}
+
+.subcuadro {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    align-content: space-around;
+    justify-content: space-between;
+}
+
+.boton {
+    width: 300px;
+    margin-bottom: 15px;
+    background-color: rgb(102, 102, 102);
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(141, 184, 219);
+}
+
+.positronx {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px;
+}
