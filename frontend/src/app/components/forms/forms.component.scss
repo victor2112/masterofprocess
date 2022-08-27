@@ -16,7 +16,7 @@ body {
     height: 80px;
     max-width: 250px;
     cursor: pointer;
-    background-color: rgb(194, 194, 194); //#A9D9FF;
+    background-color: #A9D9FF;
     margin-left: 15px;
     margin-top: 15px;
 }
@@ -61,6 +61,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    border-color: #001F49;
 }
 
 .app-header {
@@ -74,4 +75,56 @@ body {
     text-decoration: none;
     color: black;
     padding: 10px;
+}
+
+.link {
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: auto;
+}
+
+.mat-cell {
+    cursor: pointer;
+}
+
+.mat-elevation-z8 {
+    width: 100%;
+}
+
+.fila {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 16px;
+    font-family: Helvetica;
+}
+
+.nameValue {
+    width: 15%;
+}
+
+hr.solid {
+    border-top: 3px solid #bbb;
+}
+
+.button {
+    width: 15%;
+}
+
+.button-pos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

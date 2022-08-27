@@ -18,6 +18,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { ProcessComponent } from './components/process/process.component';
+import { InstancesComponent } from './components/instances/instances.component';
+import { FormsComponent } from './components/forms/forms.component';
 
 
 
@@ -30,7 +32,9 @@ import { ProcessComponent } from './components/process/process.component';
     ConsultarComponent,
     LoginComponent,
     RegistrarComponent,
-    ProcessComponent
+    ProcessComponent,
+    InstancesComponent,
+    FormsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,4 +54,6 @@ import { ProcessComponent } from './components/process/process.component';
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule { constructor() {
+}
+}

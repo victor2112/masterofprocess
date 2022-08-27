@@ -11,27 +11,40 @@ import { ProcessItem } from 'src/app/models/ProcessItem';
 export class ProcessComponent implements OnInit {
 
   processes : ProcessItem[];
-  
+  idProcess : number;
+  idUsuario : number;
 
   constructor(private backend: BackendService,
     private router: Router) { 
       this.processes = [];
+      this.idProcess = 0;
+      this.idUsuario = 0;
     }
 
   ngOnInit(): void {
-    this.backend.getProcess(1).subscribe(x => {
+    this.idUsuario = Number(localStorage.getItem('idUsuario'));
+    this.backend.getProcess(this.idUsuario).subscribe(x => {
       this.processes = x.data;
     })
   }
 
 
-
   irA(ruta: string) {
       
-    if (ruta.length > 0) {
+    if (ruta === "login") {
+      localStorage.clear();
+      this.router.navigateByUrl('/' + ruta); 
+    } else if (ruta.length > 0) {
       this.router.navigateByUrl('/' + ruta); 
     }
   }
 
+  getItems(data: any){
+    let process = JSON.parse(JSON.stringify(data));
+    this.idProcess = process["idProceso"];
+    localStorage.setItem('idProceso', process["idProceso"]);
+    localStorage.setItem('nombreProceso', process["nombreProceso"]);
+    this.irA('/instances');
+  }
 
 }

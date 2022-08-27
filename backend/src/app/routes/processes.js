@@ -2,8 +2,8 @@ const conn = require('../../config/database');
 
 module.exports = (app) => {
 
-    // Get de todos los usuarios
-    app.get("/process/:idUsuario", (req, res) => {
+    // Get de todos los Procesos por Usuario
+    app.get("/processes/:idUsuario", (req, res) => {
         let query = `Select pro.idProceso idProceso, pro.nombre nombreProceso, count(*) visibles, total.Instancias total ` +
             `from INSTANCIAS ins ` +
             `join PROCESOS pro on pro.idProceso = ins.idProceso ` +

@@ -1,0 +1,97 @@
+<body>
+    <div class="contenido">
+        <!-- Toolbar -->
+        <mat-toolbar class="app-header">
+            <span class="nav-tool-items">
+                <a mat-button class="positronx"><mat-icon>build</mat-icon></a>
+            </span>
+            <div>
+                <a target="_blank" class="positronx"><img src="../../../assets/img/logo-nobackground.png"></a>
+            </div>
+            <span class="nav-tool-items">
+                <a mat-button (click)="irA('login')" class="positronx"><mat-icon>logout</mat-icon></a>
+            </span>
+        </mat-toolbar>
+        <p></p>
+        <p></p>
+        <p></p>
+
+        <mat-card class="process">
+            <div class="headers">
+                <mat-card-title><a (click)="irA('processes')" class="link">Processes</a> >> Instances</mat-card-title>
+                <span>
+                    <a mat-button ><mat-icon>add</mat-icon></a>
+                </span>
+            </div>
+            <br>
+
+
+            <mat-card-title>{{processName}}</mat-card-title>
+            <div class="table">
+                <mat-raised-card>
+
+                    <mat-form-field appearance="standard">
+                        <mat-label>Filter</mat-label>
+                        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Ventas" #input>
+                    </mat-form-field>
+
+                    <div class="mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSource" matSort>
+
+                            <!-- ID Column -->
+                            <ng-container matColumnDef="idInstancia">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                                <td mat-cell *matCellDef="let row" (click)="getItems(row)" class="mat-cell">{{row.idInstancia}}</td>
+                            </ng-container>
+
+                            <!-- ID Column -->
+                            <ng-container matColumnDef="Estado">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+                                <td mat-cell *matCellDef="let row" (click)="getItems(row)" class="mat-cell"> {{row.estado}} </td>
+                            </ng-container>
+
+                            <!-- ID Column -->
+                            <ng-container matColumnDef="Fecha Creacion">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Creacion </th>
+                                <td mat-cell *matCellDef="let row" (click)="getItems(row)" class="mat-cell"> {{row.fechaCreacion}} </td>
+                            </ng-container>
+
+                            <!-- ID Column -->
+                            <ng-container matColumnDef="Fecha Modificacion">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Modificacion </th>
+                                <td mat-cell *matCellDef="let row" (click)="getItems(row)" class="mat-cell"> {{row.fechaModificacion}} </td>
+                            </ng-container>
+
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                            <!-- Row shown when there is no matching data. -->
+                            <tr class="mat-row" *matNoDataRow>
+                                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                            </tr>
+                        </table>
+
+                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+                    </div>
+
+
+
+
+
+
+                </mat-raised-card>
+
+            </div>
+
+
+
+
+
+
+
+        </mat-card>
+
+    </div>
+</body>

@@ -10,6 +10,8 @@ import { SaveUsuarioResponse } from '../models/SaveUsuarioResponse';
 import { UsuarioList } from '../models/UsuarioList';
 import { GeneralResponse } from '../models/GeneralResponse';
 import { ProcessList } from '../models/ProcessList';
+import { InstancesList } from '../models/InstancesList';
+import { Forms } from '../models/Forms';
 
 const BE_API = environment.urlBackEnd;
 
@@ -39,10 +41,33 @@ export class BackendService {
   }
 
   // Modulo Process
-  getProcess(idProceso: number){
-    let url:string = BE_API + '/process/' + idProceso ;
+  getProcess(idUsuario: number){
+    let url:string = BE_API + '/processes/' + idUsuario ;
     return this.http.get<ProcessList>(url, httpOptions);
   }
+
+  // Modulo Instance
+  getInstances(idUsuario: number, idProceso: number){
+    let url:string = BE_API + '/instances/' + idUsuario + '/' + idProceso ;
+    return this.http.get<InstancesList>(url, httpOptions);
+  }
+
+
+  // Modulo Forms
+  getForms(idInstancia: number){
+    let url:string = BE_API + '/forms/' + idInstancia ;
+    return this.http.get<Forms>(url, httpOptions);
+  }
+
+
+  updateForms(idFormulario: number, pos: number, idInstancia: number, valor: string){
+    let url: string = BE_API + '/forms/update/' + idFormulario + '/' + pos + '/' + idInstancia + '/' + valor;
+    return this.http.put<GeneralResponse>(url, httpOptions);
+  }
+
+
+
+
 
   getComic() {
     let url:string = BE_API + '/comic';

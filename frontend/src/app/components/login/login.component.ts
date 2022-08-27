@@ -22,11 +22,11 @@ export class LoginComponent implements OnInit {
   }
 
   Ingresar() {
-    alert("Ingresa");
+    alert("Ingresar");
   }
 
   Registrar() {
-    alert("Registra");
+    alert("Registrar");
   }
 
 
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
 
 
 irA(ruta: string) {
-  if (ruta == 'procesos') {
+  if (ruta == 'processes') {
     if (this.form.controls['usuario'].value.length > 0 && this.form.controls['password'].value.length > 0) {
       this.backend.verificaUsuario(this.form.controls['usuario'].value, this.form.controls['password'].value).subscribe(x => {
         
@@ -63,7 +63,18 @@ irA(ruta: string) {
         //alert(x.message);
 
         if (x.data.length > 0) {
+          let usuario = JSON.parse(JSON.stringify(x.data))[0];
+          console.log(JSON.parse(JSON.stringify(x.data))[0]["idUsuario"]);
+
+          localStorage.setItem('idUsuario', usuario["idUsuario"]);
+          localStorage.setItem('nombreUsuario', usuario["nombre"]);
+          localStorage.setItem('departamento', usuario["departamento"]);      
+          localStorage.setItem('idTipoUsuario', usuario["idTipoUsuario"]); 
+          localStorage.setItem('usuario', usuario["usuario"]); 
+          localStorage.setItem('email', usuario["email"]);           
+          
           this.router.navigateByUrl('/' + ruta);
+        
         } else {
           alert('Usuario o contraseña incorrecta, favor intentar nuevamente');
         }

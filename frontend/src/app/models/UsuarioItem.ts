@@ -1,19 +1,21 @@
 export class UsuarioItem {
-    id: number;
+    idUsuario: number;
     nombre: string;
+    departamento: string;
+    idTipoUsuario: number;
     usuario: string;
     password: string;
-    fecha_nacimiento: Date;
-    sexo: string;
+    email: string;
     
 
-    constructor(id: number, nombre: string, usuario: string, password: string, fecha_nacimiento: Date, sexo: string) {
-        this.id = id;
+    constructor(idUsuario: number, nombre: string, departamento: string, idTipoUsuario: number, usuario: string, password: string, email: string) {
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
+        this.departamento = departamento;
+        this.idTipoUsuario = idTipoUsuario;
         this.usuario = usuario;
         this.password = password;
-        this.fecha_nacimiento = fecha_nacimiento;
-        this.sexo = sexo;
+        this.email = email;
     }
 
 }

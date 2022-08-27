@@ -6,14 +6,18 @@ import { RegistrarComponent } from './components/registrar/registrar.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ConsultarComponent } from './components/consultar/consultar.component';
 import { ProcessComponent } from './components/process/process.component';
+import { InstancesComponent } from './components/instances/instances.component';
+import { FormsComponent } from './components/forms/forms.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
   {path: 'ingresar', component:IngresarComponent},
-  {path: 'registrar', component:RegistrarComponent},
+  {path: 'register', component:RegistrarComponent},
   {path: 'menu', component:MenuComponent},
   {path: 'consultar', component:ConsultarComponent},
-  {path: 'procesos', component:ProcessComponent}
+  {path: 'processes', component:ProcessComponent},
+  {path: 'instances', component:InstancesComponent},
+  {path: 'forms', component:FormsComponent}
 ];
 
 @NgModule({
