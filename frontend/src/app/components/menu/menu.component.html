@@ -1,20 +1,12 @@
-<div id="menu">
-    <h2 id="titulo">Proyecto FAW</h2>
-        
-    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="irA('ingresar')">
-            <mat-icon>bookmark_add</mat-icon>
-            <span>Ingresar Comic</span>
-        </button>
-        <button mat-menu-item (click)="irA('consultar')">
-            <mat-icon>list</mat-icon>
-            <span>Consultar Comics</span>
-        </button>
-        <button mat-menu-item (click)="irA('login')">
-            <mat-icon>logout</mat-icon>
-            <span>Salir</span>
-        </button>
-    </mat-menu>
-
-</div>
+<!-- Toolbar -->
+<mat-toolbar class="app-header">
+    <span class="nav-tool-items">
+        <a mat-button (click)="irA('configuration')" class="positronx" *ngIf="idTipoUsuario === 1"><mat-icon>build</mat-icon></a>
+    </span>
+    <div>
+        <a mat-button target="_blank" (click)="irA('processes')" class="positronx"><img src="../../../assets/img/logo-nobackground.png"></a>
+    </div>
+    <span class="nav-tool-items">
+        <a mat-button (click)="irA('login')" class="positronx"><mat-icon>logout</mat-icon></a>
+    </span>
+</mat-toolbar>

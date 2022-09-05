@@ -3,6 +3,7 @@ import { BackendService } from 'src/app/service/backend.service';
 import { Router } from '@angular/router';
 import { Values } from 'src/app/models/Values';
 import { AbstractControl, Form, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Lists } from 'src/app/models/Lists';
 
 @Component({
   selector: 'app-forms',
@@ -17,12 +18,14 @@ export class FormsComponent implements OnInit  {
 
   forms : FormGroup;
 
-
+  lists : Lists[];
 
 
   constructor(private fb: FormBuilder,
     private backend: BackendService,
     private router: Router) { 
+      this.lists = [];
+      
       this.forms= this.fb.group({
         
       });
@@ -42,6 +45,20 @@ export class FormsComponent implements OnInit  {
           
    
           this.forms.addControl(nombre, new FormControl(valor, Validators.required));
+
+   
+            if (element.idLista > 1) {
+              
+              
+              this.backend.getListValues(element.idLista).subscribe(x => {
+                this.lists.push({idList: element.idLista, values: x.data});
+                //alert(JSON.stringify(JSON.parse(JSON.stringify(this.lists)).idList));
+                //alert(JSON.stringify(this.lists));
+    
+              });
+            } 
+        
+          
           
         });
         
@@ -64,6 +81,10 @@ export class FormsComponent implements OnInit  {
       this.processName = localStorage.getItem('nombreProceso')!;
       
       this.idInstance = Number(localStorage.getItem('idInstancia'));
+      //alert(JSON.stringify(this.values));
+
+      
+
 
     }
 
@@ -111,7 +132,7 @@ export class FormsComponent implements OnInit  {
       
     });
 
-    alert("Formulario actualizado satisfactoriamente.");
+    //alert("Formulario actualizado satisfactoriamente.");
     
     
     

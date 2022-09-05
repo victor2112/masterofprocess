@@ -3,7 +3,7 @@ import { BackendService } from 'src/app/service/backend.service';
 import { Router } from '@angular/router';
 import { InstancesItem } from 'src/app/models/InstancesItem';
 import {AfterViewInit, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 
@@ -14,7 +14,7 @@ import {MatTableDataSource} from '@angular/material/table';
   templateUrl: './instances.component.html',
   styleUrls: ['./instances.component.scss']
 })
-export class InstancesComponent implements OnInit  {
+export class InstancesComponent implements AfterViewInit  {
   displayedColumns: string[] = ['idInstancia', 'Estado', 'Fecha Creacion', 'Fecha Modificacion'];
   dataSource: MatTableDataSource<InstancesItem>;
   instances : InstancesItem[];
@@ -23,10 +23,13 @@ export class InstancesComponent implements OnInit  {
   idInstance : number;
   processName : string;
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-  @ViewChild(MatSort)
-  sort!: MatSort;
+ 
+
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator!;
+  }
 
   constructor(private backend: BackendService,
     private router: Router) { 
@@ -37,9 +40,8 @@ export class InstancesComponent implements OnInit  {
       this.processName = ""
       
    
-
       // Assign the data to the data source for the table to render
-      this.dataSource = new MatTableDataSource(this.instances);
+      this.dataSource = new MatTableDataSource<InstancesItem>(this.instances);
    
 
     }
@@ -50,18 +52,11 @@ export class InstancesComponent implements OnInit  {
       this.idProcess = Number(localStorage.getItem('idProceso'));
       this.backend.getInstances(this.idUsuario, this.idProcess).subscribe(x => {
         this.instances = x.data;
-        this.dataSource = new MatTableDataSource(this.instances);
+        this.dataSource = new MatTableDataSource<InstancesItem>(this.instances);
+
+        this.dataSource.paginator = this.paginator!;
       })
-      
-      
-    }
-
-    ngAfterViewInit() {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      
-      
-
+       
     }
 
     applyFilter(event: Event) {
@@ -97,4 +92,3 @@ export class InstancesComponent implements OnInit  {
 
 
 }
-

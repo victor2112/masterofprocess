@@ -1,27 +1,12 @@
+<app-menu></app-menu>
+
 <body>
     <div class="contenido">
-        <!-- Toolbar -->
-        <mat-toolbar class="app-header">
-            <span class="nav-tool-items">
-                <a mat-button class="positronx"><mat-icon>build</mat-icon></a>
-            </span>
-            <div>
-                <a target="_blank" class="positronx"><img src="../../../assets/img/logo-nobackground.png"></a>
-            </div>
-            <span class="nav-tool-items">
-                <a mat-button (click)="irA('login')" class="positronx"><mat-icon>logout</mat-icon></a>
-            </span>
-        </mat-toolbar>
-        <p></p>
-        <p></p>
-        <p></p>
 
+        <p></p>
         <mat-card class="process">
             <mat-card-title><a (click)="irA('processes')" class="link">Processes</a> >> <a (click)="irA('instances')" class="link">Instances</a> >> Forms </mat-card-title>
-
             <br>
-
-
             <div class="login-wrapper">
                 <mat-card class="box">
                     <mat-card-header>
@@ -31,45 +16,29 @@
                     <form [formGroup]="forms">
                         <div *ngFor="let value of values" class="fila">
                             <div class="nameValue"><b>{{value.nombre}}:</b></div>
-                            <input type="text" size="40px" formControlName="{{value.nombre}}" value="{{value.valor}}">
 
+
+                            <input type="{{value.tipo}}" formControlName="{{value.nombre}}" class="fieldValue" *ngIf="value.tipo === 'text'" value="{{value.valor}}">
+                            <input type="{{value.tipo}}" formControlName="{{value.nombre}}" class="fieldValue" *ngIf="value.tipo === 'number'" value="{{value.valor}}">
+                            <input type="{{value.tipo}}" formControlName="{{value.nombre}}" class="fieldValueDate" *ngIf="value.tipo === 'date'" value="{{value.valor}}">
+
+
+
+                            <select class="fieldName" *ngIf="value.tipo === 'list'" formControlName="{{value.nombre}}" class="fieldValueList">
+                                <ng-container *ngFor="let list of lists">
+                                    <ng-container *ngFor="let valueList of list.values">
+                            
+                                        <option [ngValue]="valueList.nombre" *ngIf="list.idList === value.idLista" >{{valueList.nombre}}</option>
+                        
+                                    </ng-container>
+                                </ng-container>
+                            </select>
                         </div>
                         <br>
-                        <div class="button-pos"> <button class="button" mat-stroked-button color="primary" type="submit" (click)="save()"> submit </button> </div>
-
+                        <div class="button-pos"> <button class="button" mat-stroked-button color="primary" type="submit" (click)="save()"> save </button> </div>
                     </form>
-
-
-
-                    <!--
-                    <form class="example-form" [formGroup]="form">
-                        <mat-card-content>
-                            <mat-form-field class="example-full-width" *ngFor="let value of values">
-                                <input matInput formControlName="fields.nombre" placeholder="$fields.valor">
-                            </mat-form-field>
-                            <mat-form-field class="example-full-width">
-                                <input matInput formControlName="departamento" placeholder="Departamento">
-                            </mat-form-field>
-                            <mat-form-field class="example-full-width">
-                                <input matInput formControlName="usuario" placeholder="Usuario">
-                            </mat-form-field>
-                            <mat-form-field class="example-full-width">
-                                <input matInput formControlName="password" placeholder="Password" type="password">
-                            </mat-form-field>
-                            <mat-form-field class="example-full-width">
-                                <input matInput formControlName="email" placeholder="Email" type="email">
-                            </mat-form-field>
-                        </mat-card-content>
-                        <button mat-stroked-button color="primary" class="btn-block" (click)="Save()">Create User</button>
-                    </form>-->
                 </mat-card>
             </div>
-
-
-
-
-
         </mat-card>
-
     </div>
 </body>

@@ -111,8 +111,27 @@ th {
     font-family: Helvetica;
 }
 
+.fieldName {
+    width: 15%;
+    min-width: 15%;
+}
+
+.fieldValue {
+    width: 25%;
+    min-width: 25%;
+}
+
+.fieldValueDate {
+    width: 25.2%;
+}
+
+.fieldValueList {
+    width: 25.7%;
+}
+
 .nameValue {
     width: 15%;
+    min-width: max-content;
 }
 
 hr.solid {

@@ -1,0 +1,68 @@
+<app-menu></app-menu>
+
+<body>
+    <div class="contenido">
+
+        <p></p>
+        <mat-card class="process">
+
+            <div class="headers">
+                <mat-card-title><a (click)="irA('processes')" class="link">Processes</a> >> <a (click)="irA('instances')" class="link">Instances</a> </mat-card-title>
+            </div>
+            <br>
+
+
+            <div class="login-wrapper">
+                <mat-card class="box">
+                    <mat-card-header>
+                        <mat-card-title>{{processName}}</mat-card-title>
+                    </mat-card-header>
+
+                    <hr class="solid">
+                    <form [formGroup]="forms">
+                        <div *ngFor="let field of fields" class="fila">
+                            <div class="fieldName"><b>{{field.nombre}}:</b></div>
+
+                            <input type="{{field.tipo}}" formControlName="{{field.nombre}}" class="fieldValue" *ngIf="field.tipo === 'text'">
+                            <input type="{{field.tipo}}" formControlName="{{field.nombre}}" class="fieldValue" *ngIf="field.tipo === 'number'">
+                            <input type="{{field.tipo}}" formControlName="{{field.nombre}}" class="fieldValueDate" *ngIf="field.tipo === 'date'">
+
+
+
+                            <select class="fieldName" *ngIf="field.tipo === 'list'" formControlName="{{field.nombre}}" class="fieldValueList">
+                                <ng-container *ngFor="let list of lists">
+                                    <ng-container *ngFor="let value of list.values">
+                            
+                                        <option [ngValue]="value.nombre" *ngIf="list.idList === field.idLista" >{{value.nombre}}</option>
+                        
+                                    </ng-container>
+                                </ng-container>
+                            </select>
+
+
+
+
+                        </div>
+                        <br>
+
+
+                        <div class="button-pos"> <button class="button" mat-stroked-button color="primary" type="submit" (click)="save()"> create </button> </div>
+
+                    </form>
+
+
+
+
+
+
+                </mat-card>
+            </div>
+
+
+
+
+
+        </mat-card>
+
+    </div>
+</body>

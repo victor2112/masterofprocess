@@ -20,7 +20,11 @@ import { AngularMaterialModule } from './angular-material.module';
 import { ProcessComponent } from './components/process/process.component';
 import { InstancesComponent } from './components/instances/instances.component';
 import { FormsComponent } from './components/forms/forms.component';
-
+import { NewInstanceComponent } from './components/new-instance/new-instance.component';
+import { ConfigurationComponent } from './components/configuration/configuration.component';
+import { UsersListComponent } from './components/configuration/users/users-list/users-list.component';
+import { UsersNewComponent } from './components/configuration/users/users-new/users-new.component';
+import { UsersEditComponent } from './components/configuration/users/users-edit/users-edit.component';
 
 
 
@@ -34,7 +38,12 @@ import { FormsComponent } from './components/forms/forms.component';
     RegistrarComponent,
     ProcessComponent,
     InstancesComponent,
-    FormsComponent
+    FormsComponent,
+    NewInstanceComponent,
+    ConfigurationComponent,
+    UsersListComponent,
+    UsersNewComponent,
+    UsersEditComponent
   ],
   imports: [
     BrowserModule,

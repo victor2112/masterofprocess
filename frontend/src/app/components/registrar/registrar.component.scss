@@ -1,11 +1,11 @@
 body {
-    background-color: steelblue;
+    background-color: #001F49;
     display: flex;
     flex-direction: column;
 }
 
 .contenido {
-    background-color: steelblue;
+    background-color: #001F49;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,15 +45,16 @@ body {
 }
 
 .app-header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(141, 184, 219);
+    background-color: #FFF7F7; // rgb(141, 184, 219);
 }
 
 .positronx {
     text-decoration: none;
-    color: #ffffff;
+    color: black;
     padding: 10px;
 }
 

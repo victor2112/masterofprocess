@@ -18,15 +18,7 @@ export class LoginComponent implements OnInit {
   usuarios: UsuarioItem[];
   
   ngOnInit(): void {
-    
-  }
-
-  Ingresar() {
-    alert("Ingresar");
-  }
-
-  Registrar() {
-    alert("Registrar");
+    localStorage.clear();
   }
 
 
@@ -43,60 +35,38 @@ export class LoginComponent implements OnInit {
     
    }
 
-/*
-   if(resultado.usuarios.length > 0) {
-    return true;
-  } else {
-    return false;
-  };
-*/
-
-
-irA(ruta: string) {
-  if (ruta == 'processes') {
-    if (this.form.controls['usuario'].value.length > 0 && this.form.controls['password'].value.length > 0) {
-      this.backend.verificaUsuario(this.form.controls['usuario'].value, this.form.controls['password'].value).subscribe(x => {
-        
-        //this.usuarios = x.usuarios;
-        //alert(x.status);
-        //alert(JSON.stringify(x.data));
-        //alert(x.message);
-
-        if (x.data.length > 0) {
-          let usuario = JSON.parse(JSON.stringify(x.data))[0];
-          console.log(JSON.parse(JSON.stringify(x.data))[0]["idUsuario"]);
-
-          localStorage.setItem('idUsuario', usuario["idUsuario"]);
-          localStorage.setItem('nombreUsuario', usuario["nombre"]);
-          localStorage.setItem('departamento', usuario["departamento"]);      
-          localStorage.setItem('idTipoUsuario', usuario["idTipoUsuario"]); 
-          localStorage.setItem('usuario', usuario["usuario"]); 
-          localStorage.setItem('email', usuario["email"]);           
+  irA(ruta: string) {
+    if (ruta == 'processes') {
+      if (this.form.controls['usuario'].value.length > 0 && this.form.controls['password'].value.length > 0) {
+        this.backend.verificaUsuario(this.form.controls['usuario'].value, this.form.controls['password'].value).subscribe(x => {
           
-          this.router.navigateByUrl('/' + ruta);
-        
-        } else {
-          alert('Usuario o contraseña incorrecta, favor intentar nuevamente');
-        }
+          if (x.data.length > 0) {
+            let usuario = JSON.parse(JSON.stringify(x.data))[0];
+            console.log(JSON.parse(JSON.stringify(x.data))[0]["idUsuario"]);
 
-      })
-    } else {
-      alert('Usuario o contraseña no completado, favor intentar nuevamente');
-    }
+            localStorage.setItem('idUsuario', usuario["idUsuario"]);
+            localStorage.setItem('nombreUsuario', usuario["nombre"]);
+            localStorage.setItem('departamento', usuario["departamento"]);      
+            localStorage.setItem('idTipoUsuario', usuario["idTipoUsuario"]); 
+            localStorage.setItem('usuario', usuario["usuario"]); 
+            localStorage.setItem('email', usuario["email"]);           
+            
+            this.router.navigateByUrl('/' + ruta);
+          
+          } else {
+            alert('Usuario o contraseña incorrecta, favor intentar nuevamente');
+          }
 
-  } else {
-    this.router.navigateByUrl('/' + ruta);
-  }
-    
-    /*
-    {
-      alert(this.usuarios.length);
-    }
-    if (ruta == 'menu') {
-      alert(this.usuarios.length);
+        })
+      } else {
+        alert('Usuario o contraseña no completado, favor intentar nuevamente');
+      }
+
     } else {
       this.router.navigateByUrl('/' + ruta);
-    }*/
+    }
+      
+    
 
   }
 

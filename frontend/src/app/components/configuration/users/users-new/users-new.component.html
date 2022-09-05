@@ -1,15 +1,8 @@
+<app-menu></app-menu>
+
 <body>
     <div class="contenido">
-        <!-- Toolbar -->
-        <mat-toolbar class="app-header">
-            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-            <div>
-                <a target="_blank" class="positronx"><img src="../../../assets/img/logo-nobackground.png"></a>
-            </div>
-            <span class="nav-tool-items">
-                <a mat-button (click)="irA('login')" class="positronx"><mat-icon>logout</mat-icon></a>
-            </span>
-        </mat-toolbar>
+
         <p></p>
         <p></p>
         <p></p>
@@ -18,7 +11,7 @@
         <div class="login-wrapper">
             <mat-card class="box">
                 <mat-card-header>
-                    <mat-card-title>Register</mat-card-title>
+                    <mat-card-title><a (click)="irA('configuration/users/users-list')" class="link">Users</a></mat-card-title>
                 </mat-card-header>
                 <form class="example-form" [formGroup]="form">
                     <mat-card-content>

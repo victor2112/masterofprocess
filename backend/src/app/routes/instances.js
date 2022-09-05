@@ -17,4 +17,27 @@ module.exports = (app) => {
         })
     });
 
+    app.post('/instances/new/:idProceso/:idEstado', (req, res, next) => {
+        let query = `INSERT INTO INSTANCIAS (IDPROCESO, IDESTADO, FECHACREACION, FECHAMODIFICACION) ` +
+            `VALUES ('${req.params.idProceso}', '${req.params.idEstado}', ` +
+            `timestamp(SYSDATE()), timestamp(SYSDATE()))`;
+
+        conn.query(query, (err, rows, cols) => {
+            if (err) {
+                res.json({ status: 0, data: rows, message: "Error en la db" });
+            } else {
+                res.json({ status: 1, data: rows, message: "Instancia creada satisfactoriamente" });
+            }
+        });
+    });
+
+    // Get de instancias de un Proceso por Usuario
+    app.get("/instances/number", (req, res) => {
+        let query = `select max(idInstancia) instancias from instancias`;
+        conn.query(query, (err, rows, field) => {
+            if (err) res.status(400).json({ status: 0, message: "No se pudo obtener informacion" });
+            else res.json({ status: 1, data: rows, message: "OK" });
+        })
+    });
+
 }

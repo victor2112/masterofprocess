@@ -1,30 +1,20 @@
+<app-menu></app-menu>
+
 <body>
     <div class="contenido">
-        <!-- Toolbar -->
-        <mat-toolbar class="app-header">
-            <span class="nav-tool-items">
-                <a mat-button class="positronx"><mat-icon>build</mat-icon></a>
-            </span>
-            <div>
-                <a target="_blank" class="positronx"><img src="../../../assets/img/logo-nobackground.png"></a>
-            </div>
-            <span class="nav-tool-items">
-                <a mat-button (click)="irA('login')" class="positronx"><mat-icon>logout</mat-icon></a>
-            </span>
-        </mat-toolbar>
+
         <p></p>
-        <p></p>
-        <p></p>
+
 
         <mat-card class="process">
             <div class="headers">
-                <mat-card-title><a (click)="irA('processes')" class="link">Processes</a> >> Instances</mat-card-title>
+                <mat-card-title><a (click)="irA('processes')" class="link">Processes</a>&nbsp;>> Instances</mat-card-title>
                 <span>
-                    <a mat-button ><mat-icon>add</mat-icon></a>
+                    <a mat-button (click)="irA('newInstance')" ><mat-icon>add</mat-icon></a>
                 </span>
             </div>
-            <br>
 
+            <br>
 
             <mat-card-title>{{processName}}</mat-card-title>
             <div class="table">
@@ -71,9 +61,11 @@
                             <tr class="mat-row" *matNoDataRow>
                                 <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
                             </tr>
+
                         </table>
 
-                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+                        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of row">
+                        </mat-paginator>
                     </div>
 
 

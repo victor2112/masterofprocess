@@ -26,9 +26,11 @@ export class ProcessComponent implements OnInit {
     this.backend.getProcess(this.idUsuario).subscribe(x => {
       this.processes = x.data;
     })
+
+  
   }
 
-
+ 
   irA(ruta: string) {
       
     if (ruta === "login") {

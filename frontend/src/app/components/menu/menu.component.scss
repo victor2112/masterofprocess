@@ -1,27 +1,13 @@
-#menu {
+.app-header {
     width: 100%;
-    height: 40px;   
-    background-color: rgb(96, 194, 240);
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    background-color: #FFF7F7; // rgb(141, 184, 219);
 }
 
-#titulo {
-    width: 400px;
-    height: 100%;
-    margin: 10px;
-    color: #000;
-}
-
-#opciones {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.op {
-    margin: 10px;
-    color: #000;
+.positronx {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
 }

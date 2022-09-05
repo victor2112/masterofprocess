@@ -63,14 +63,24 @@ module.exports = (app) => {
 
     // Delete para eliminar un usuario
     app.delete('/usuario/:idUsuario', (req, res) => {
-        let query = `DELETE FROM usuarios WHERE idUsuario = '${req.params.idUsuario}'`;
+        let query = `delete from permisos where idUsuario = '${req.params.idUsuario}'`;
         conn.query(query, (err, rows, cols) => {
             if (err) {
                 res.json({ status: 0, data: rows, message: "Error en la db" });
             } else {
-                res.json({ status: 1, data: rows, message: "Usuario eliminado satisfactoriamente" });
+                let query2 = `DELETE FROM usuarios WHERE idUsuario = '${req.params.idUsuario}'`;
+                conn.query(query2, (err, rows, cols) => {
+                    if (err) {
+                        res.json({ status: 0, data: rows, message: "Error en la db" });
+                    } else {
+                        res.json({ status: 1, data: rows, message: "Usuario eliminado satisfactoriamente" });
+                    }
+                });
             }
         });
+
+
+
     });
 
 }

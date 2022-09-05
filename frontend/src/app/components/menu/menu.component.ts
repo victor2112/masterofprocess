@@ -10,14 +10,19 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  
-  constructor (private router: Router) { }
+  idTipoUsuario: number;
+
+  constructor (private router: Router) {
+    this.idTipoUsuario = 0;
+   }
+
   
   irA(ruta: string) {
     this.router.navigateByUrl('/' + ruta);
   }
 
   ngOnInit(): void {
+    this.idTipoUsuario = Number(localStorage.getItem('idTipoUsuario'));
   }
 
 }
