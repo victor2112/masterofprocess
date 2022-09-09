@@ -73,7 +73,11 @@ export class UsersListComponent implements AfterViewInit {
   }
 
   
-
+  irAEditar(ruta: string, idUsuario: number){
+    localStorage.setItem('idUserEdit', String(idUsuario)); 
+    this.router.navigateByUrl('/' + ruta);
+    
+  }
 
 
   irA(ruta: string) {

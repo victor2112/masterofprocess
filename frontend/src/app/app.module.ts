@@ -25,6 +25,11 @@ import { ConfigurationComponent } from './components/configuration/configuration
 import { UsersListComponent } from './components/configuration/users/users-list/users-list.component';
 import { UsersNewComponent } from './components/configuration/users/users-new/users-new.component';
 import { UsersEditComponent } from './components/configuration/users/users-edit/users-edit.component';
+import { FormsListComponent } from './components/configuration/forms/forms-list/forms-list.component';
+import { FormsNewComponent } from './components/configuration/forms/forms-new/forms-new.component';
+import { FormsEditComponent } from './components/configuration/forms/forms-edit/forms-edit.component';
+import { FieldsEditComponent } from './components/configuration/forms/fields/fields-edit/fields-edit.component';
+import { FieldsNewComponent } from './components/configuration/forms/fields/fields-new/fields-new.component';
 
 
 
@@ -43,7 +48,12 @@ import { UsersEditComponent } from './components/configuration/users/users-edit/
     ConfigurationComponent,
     UsersListComponent,
     UsersNewComponent,
-    UsersEditComponent
+    UsersEditComponent,
+    FormsListComponent,
+    FormsNewComponent,
+    FormsEditComponent,
+    FieldsEditComponent,
+    FieldsNewComponent
   ],
   imports: [
     BrowserModule,

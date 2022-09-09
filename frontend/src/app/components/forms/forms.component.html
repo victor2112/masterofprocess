@@ -33,6 +33,23 @@
                                     </ng-container>
                                 </ng-container>
                             </select>
+
+
+
+                        </div>
+                        <div>
+                            <br>
+                        </div>
+                        <div class="fila">
+                            <div class="nameValue"><b>Enviar a:</b></div>
+                            <select class="fieldName" formControlName="estado" class="fieldValueList">
+                                <ng-container *ngFor="let transition of transitions">
+                                        <option [ngValue]="transition.destiny">{{transition.destinyName}}</option>
+                                </ng-container>
+                            </select>
+
+
+
                         </div>
                         <br>
                         <div class="button-pos"> <button class="button" mat-stroked-button color="primary" type="submit" (click)="save()"> save </button> </div>

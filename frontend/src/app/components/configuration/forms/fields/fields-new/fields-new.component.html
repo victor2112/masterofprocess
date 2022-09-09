@@ -1,0 +1,49 @@
+<app-menu></app-menu>
+
+<body>
+    <div class="contenido">
+
+        <p></p>
+        <p></p>
+        <p></p>
+
+
+        <div class="login-wrapper">
+            <mat-card class="box">
+                <mat-card-header>
+                    <mat-card-title><a (click)="goTo('configuration/forms/forms-edit')" class="link">Fields</a></mat-card-title>
+                </mat-card-header>
+                <form class="example-form" [formGroup]="form">
+                    <mat-card-content>
+                        <mat-form-field class="example-full-width">
+                            <input matInput formControlName="name" placeholder="Name">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input matInput formControlName="pos" placeholder="Position">
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-select formControlName="type" placeholder="Type">
+                                <mat-option [value]="1">Text</mat-option>
+                                <mat-option [value]="2">Number</mat-option>
+                                <mat-option [value]="3">List</mat-option>
+                                <mat-option [value]="4">Date</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width" *ngIf="isList()">
+                            <mat-select formControlName="list" placeholder="List">
+                                <div *ngFor="let list of lists">
+                                    <mat-option [value]="list.idList">{{list.name}}</mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+
+
+                    </mat-card-content>
+                    <button mat-stroked-button color="primary" class="btn-block" (click)="create()">Create Field</button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</body>

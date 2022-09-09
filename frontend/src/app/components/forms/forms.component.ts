@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Values } from 'src/app/models/Values';
 import { AbstractControl, Form, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Lists } from 'src/app/models/Lists';
+import { TransitionItem } from 'src/app/models/TransitionItem';
+import { InstancesItem } from 'src/app/models/InstancesItem';
 
 @Component({
   selector: 'app-forms',
@@ -15,17 +17,20 @@ export class FormsComponent implements OnInit  {
   values : Values[];
   idInstance : number;
   processName : string;
+  transitions : TransitionItem[];
 
   forms : FormGroup;
 
   lists : Lists[];
+  idState : number;
 
 
   constructor(private fb: FormBuilder,
     private backend: BackendService,
     private router: Router) { 
       this.lists = [];
-      
+      this.transitions = [];
+      this.idState = 0;
       this.forms= this.fb.group({
         
       });
@@ -72,6 +77,8 @@ export class FormsComponent implements OnInit  {
       this.processName = ""
 
       
+
+      
    
 
 
@@ -83,9 +90,13 @@ export class FormsComponent implements OnInit  {
       this.idInstance = Number(localStorage.getItem('idInstancia'));
       //alert(JSON.stringify(this.values));
 
-      
 
 
+      // Campo para cambiar de estado
+      this.forms.addControl("estado", new FormControl("", Validators.required));
+      this.backend.getTransitions(Number(localStorage.getItem('idProceso')), Number(localStorage.getItem('idEstadoInstancia'))).subscribe(x => {
+        this.transitions = x.data;
+      });
     }
 
  
@@ -132,8 +143,49 @@ export class FormsComponent implements OnInit  {
       
     });
 
-    //alert("Formulario actualizado satisfactoriamente.");
     
+    // Registro de transicion de estado si fue modificado
+    if (this.forms.controls["estado"].value) {
+      //alert(this.forms.controls["estado"].value);
+      let idState = this.forms.controls["estado"].value;
+
+      this.backend.updateInstanceState(this.idInstance, idState).subscribe(x => {
+        if (x.status === 0) {
+          alert("Error al actualizar el formulario, verificar los datos ingresados");
+        }
+        this.idState = idState;
+
+        //Verificar si el usuario puede ver el nuevo estado para continuar en el formulario
+        let reload = 0;
+        let idUsuario = Number(localStorage.getItem('idUsuario'));
+        let idProcess = Number(localStorage.getItem('idProceso'));
+        this.backend.getInstances(idUsuario, idProcess).subscribe(x => {
+          let instances : InstancesItem[] = x.data;
+          instances.forEach(element => {
+            if (element.idEstado === idState) {
+              reload = 1;
+            }
+          });
+
+          if (reload === 1) {
+            this.backend.getTransitions(Number(localStorage.getItem('idProceso')), idState).subscribe(x => {
+              this.transitions = x.data;
+            });
+            localStorage.setItem('idEstadoInstancia', idState);
+            
+            window.location.reload();
+            //this.router.navigateByUrl('/forms'); 
+          } else {
+            this.router.navigateByUrl('/instances'); 
+          }
+
+          
+
+        })
+
+      }
+    )
+    }
     
     
   }

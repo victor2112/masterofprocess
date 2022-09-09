@@ -9,5 +9,6 @@ require('./app/routes/instances')(app);
 require('./app/routes/forms')(app);
 require('./app/routes/fields')(app);
 require('./app/routes/lists')(app);
+require('./app/routes/states')(app);
 
 app.listen(app.get("PORT"), () => console.log(`Servidor corriendo en puerto ${app.get("PORT")}`));

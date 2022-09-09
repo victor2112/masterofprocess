@@ -1,1 +1,45 @@
-<p>users-edit works!</p>
+<app-menu></app-menu>
+
+<body>
+    <div class="contenido">
+
+        <p></p>
+        <p></p>
+        <p></p>
+
+
+        <div class="login-wrapper">
+            <mat-card class="box">
+                <mat-card-header>
+                    <mat-card-title><a (click)="irA('configuration/users/users-list')" class="link">Users</a></mat-card-title>
+                </mat-card-header>
+                <form class="example-form" [formGroup]="form">
+                    <mat-card-content>
+                        <mat-form-field class="example-full-width">
+                            <input matInput formControlName="nombre" placeholder="Nombre">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-select formControlName="tipo" placeholder="Tipo">
+                                <mat-option [value]="1">Administrador</mat-option>
+                                <mat-option [value]="2">Normal</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input matInput formControlName="departamento" placeholder="Departamento">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input matInput formControlName="usuario" placeholder="Usuario">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input matInput formControlName="password" placeholder="Password" type="password">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input matInput formControlName="email" placeholder="Email" type="email">
+                        </mat-form-field>
+                    </mat-card-content>
+                    <button mat-stroked-button color="primary" class="btn-block" (click)="Grabar()">Save</button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</body>

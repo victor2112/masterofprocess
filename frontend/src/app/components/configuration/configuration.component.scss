@@ -4,7 +4,7 @@ body {
 }
 
 .contenido {
-    background-color: #001F49;
+    background-color: #bbbbbbf8;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@ body {
 
 .process {
     width: 90%;
-    background-color: #FFF7F7;
+    background-color: #fcfcfc;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -28,6 +28,7 @@ body {
 }
 
 .mat-elevation-z8 {
+    background-color: #ffffff;
     width: 100%;
     position: relative;
     min-height: 200px;

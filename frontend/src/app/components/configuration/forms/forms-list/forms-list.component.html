@@ -9,9 +9,9 @@
         <mat-card class="process">
 
             <div class="headers">
-                <mat-card-title>Users</mat-card-title>
+                <mat-card-title>Forms</mat-card-title>
                 <span>
-                    <a mat-button (click)="irA('configuration/users/users-new')" ><mat-icon>add</mat-icon></a>
+                    <a mat-button (click)="irA('configuration/forms/forms-new')" ><mat-icon>add</mat-icon></a>
                 </span>
             </div>
 
@@ -28,16 +28,16 @@
                         <table mat-table [dataSource]="dataSource" matSort>
 
                             <!-- ID Column -->
-                            <ng-container matColumnDef="nombre">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell"> User Name </th>
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell"> Form Name </th>
                                 <td mat-cell *matCellDef="let row" class="mat-cell">
 
-                                    <div>{{row.nombre}}</div>
+                                    <div>{{row.name}}</div>
                                     <div>
-                                        <a mat-button (click)="irAEditar('configuration/users/users-edit', row.idUsuario)" class="positronx">
+                                        <a mat-button (click)="goToEdit('configuration/forms/forms-edit', row.idForm, row.name)" class="positronx">
                                             <mat-icon>edit</mat-icon>
                                         </a>
-                                        <a mat-button (click)="deleteUser(row.idUsuario)" class="positronx">
+                                        <a mat-button (click)="deleteForm(row.idForm)" class="positronx">
                                             <mat-icon>delete</mat-icon>
                                         </a>
                                     </div>

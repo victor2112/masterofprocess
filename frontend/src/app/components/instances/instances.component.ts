@@ -86,6 +86,7 @@ export class InstancesComponent implements AfterViewInit  {
     let instance = JSON.parse(JSON.stringify(data));
     localStorage.setItem('idInstancia', instance["idInstancia"]);
     localStorage.setItem('estadoInstancia', instance["estado"]);
+    localStorage.setItem('idEstadoInstancia', instance["idEstado"]);
     this.irA('/forms');
   }
 

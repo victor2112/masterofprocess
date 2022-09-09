@@ -27,14 +27,23 @@
                             <mat-list-option (click)="irA('configuration/users/users-list')">
                                 Users
                             </mat-list-option>
-                            <mat-list-option>
+                            <mat-list-option [disabled]="true">
+                                Lists
+                            </mat-list-option>
+                            <mat-list-option (click)="irA('configuration/forms/forms-list')">
                                 Forms
                             </mat-list-option>
-                            <mat-list-option>
+                            <mat-list-option [disabled]="true">
                                 Processes
                             </mat-list-option>
-                            <mat-list-option>
+                            <mat-list-option [disabled]="true">
                                 States
+                            </mat-list-option>
+                            <mat-list-option [disabled]="true">
+                                Transitions
+                            </mat-list-option>
+                            <mat-list-option [disabled]="true">
+                                Permissions
                             </mat-list-option>
                         </mat-selection-list>
 

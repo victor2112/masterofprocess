@@ -129,48 +129,64 @@ export class NewInstanceComponent implements OnInit  {
     // Obtener idInstancia max + 1
     this.backend.getInstancesNumber().subscribe(x => {
       this.idInstance = JSON.parse(JSON.stringify(x.data))[0]['instancias'] + 1;
-    });
-
-    Number(localStorage.getItem('idFormulario'));
-    let idEstado = 1;
     
-    //alert("Insert de instancia");
-    // Insert de instancia
-    this.backend.insertInstance(Number(localStorage.getItem('idFormulario')), idEstado).subscribe(x => {
-      if (x.status === 0) {
-        alert("Error al crear la instancia, verificar los datos ingresados");
-      } else {
-        localStorage.setItem('idInstancia', JSON.parse(JSON.stringify(x.data))['insertId'] + "");
-      }
-    }
-
-    );
-    
-    
-    
-
-    //alert("Insert de valores_campos");
-    // Insert de valores_campos
-    this.fields.forEach(element => {
+      Number(localStorage.getItem('idFormulario'));
       
       
-      let pos = element.pos;
-      let valor = this.forms.controls[element.nombre].value;
-      
-
-      this.backend.insertFieldsValues(Number(localStorage.getItem('idFormulario')), pos, this.idInstance, valor).subscribe(x => {
-          if (x.status === 0) {
-            alert("Error al actualizar el formulario, verificar los datos ingresados");
-          } else {
-            //alert(x.message);
+      this.backend.getInitialState(Number(localStorage.getItem('idProceso'))).subscribe(x => {
+        if (x.status === 0) {
+          alert("Error al obtener el estado initial");
+        } else {
+              
+          
+          let idEstado = Number(JSON.parse(JSON.stringify(x.data))[0].idEstado);
+          alert(String(idEstado));
+    
+          
+          //alert("Insert de instancia");
+          // Insert de instancia
+          this.backend.insertInstance(Number(localStorage.getItem('idFormulario')), idEstado).subscribe(x => {
+            if (x.status === 0) {
+              alert("Error al crear la instancia, verificar los datos ingresados");
+            } else {
+              localStorage.setItem('idInstancia', JSON.parse(JSON.stringify(x.data))['insertId'] + "");
+            }
           }
+
+          );
+          
+          
+          
+
+          //alert("Insert de valores_campos");
+          // Insert de valores_campos
+          this.fields.forEach(element => {
+            
+            
+            let pos = element.pos;
+            let valor = this.forms.controls[element.nombre].value;
+            
+
+            this.backend.insertFieldsValues(Number(localStorage.getItem('idFormulario')), pos, this.idInstance, valor).subscribe(x => {
+                if (x.status === 0) {
+                  alert("Error al actualizar el formulario, verificar los datos ingresados");
+                } else {
+                  //alert(x.message);
+                }
+              }
+            )
+            
+          });
+
+
+          this.router.navigateByUrl('/instances'); 
+
+      
         }
-      )
+      });
+
       
     });
-
-
-    this.router.navigateByUrl('/instances'); 
 
   }
 

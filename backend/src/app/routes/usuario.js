@@ -11,6 +11,15 @@ module.exports = (app) => {
         })
     });
 
+    // Get de 1 usuario
+    app.get("/usuario/:idUsuario", (req, res) => {
+        let query = `SELECT idUsuario, nombre, departamento, idTipoUsuario, usuario, password, email FROM usuarios where idUsuario = ${req.params.idUsuario}`;
+        conn.query(query, (err, rows, field) => {
+            if (err) res.status(400).json({ status: 0, message: "No se pudo obtener informacion" });
+            else res.json({ status: 1, data: rows, message: "" });
+        })
+    });
+
     // Get de un usuario en particular
     app.get("/usuario/:usuario/:password", (req, res) => {
         let query = `SELECT idUsuario, nombre, departamento, idTipoUsuario, usuario, password, email ` +
@@ -45,6 +54,8 @@ module.exports = (app) => {
 
     // Put para modificar un usuario
     app.put('/usuario/:idUsuario', (req, res) => {
+        console.log(req.body);
+
         let query = `UPDATE usuarios SET nombre = '${req.body.nombre}', ` +
             `departamento = '${req.body.departamento}', ` +
             `idTipoUsuario = '${req.body.idTipoUsuario}', ` +
@@ -52,6 +63,8 @@ module.exports = (app) => {
             `password = '${req.body.password}', ` +
             `email = '${req.body.email}' ` +
             `where idUsuario = '${req.params.idUsuario}'`;
+
+        console.log(query);
         conn.query(query, (err, rows, cols) => {
             if (err) {
                 res.json({ status: 0, data: rows, message: "Error en la db" });
