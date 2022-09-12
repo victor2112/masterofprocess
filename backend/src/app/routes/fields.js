@@ -62,7 +62,7 @@ module.exports = (app) => {
         });
     });
 
-    // Insert de campos
+    // Delete de campos
     app.delete('/fields/:idForm/:pos', (req, res, next) => {
         let query = `delete from campos where idFormulario = ${req.params.idForm} and pos = ${req.params.pos}`;
         //console.log(query);

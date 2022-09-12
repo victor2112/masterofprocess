@@ -3,13 +3,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BackendService } from 'src/app/service/backend.service';
 
-
 @Component({
-  selector: 'app-forms-new',
-  templateUrl: './forms-new.component.html',
-  styleUrls: ['./forms-new.component.scss']
+  selector: 'app-lists-new',
+  templateUrl: './lists-new.component.html',
+  styleUrls: ['./lists-new.component.scss']
 })
-export class FormsNewComponent implements OnInit {
+export class ListsNewComponent implements OnInit {
 
   form:FormGroup;
 
@@ -28,10 +27,10 @@ export class FormsNewComponent implements OnInit {
   Save() {
     if (this.form.controls['name'].value.length > 0) {
         
-        this.backend.insertForm(this.form.controls['name'].value).subscribe(x => {
+        this.backend.insertList(this.form.controls['name'].value).subscribe(x => {
         
           if (x.status === 1) {
-            this.router.navigateByUrl('/configuration/forms/forms-list');
+            this.router.navigateByUrl('/configuration/lists/lists-list');
           }
         }
       )

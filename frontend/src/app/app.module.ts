@@ -30,6 +30,11 @@ import { FormsNewComponent } from './components/configuration/forms/forms-new/fo
 import { FormsEditComponent } from './components/configuration/forms/forms-edit/forms-edit.component';
 import { FieldsEditComponent } from './components/configuration/forms/fields/fields-edit/fields-edit.component';
 import { FieldsNewComponent } from './components/configuration/forms/fields/fields-new/fields-new.component';
+import { ListsListComponent } from './components/configuration/lists/lists-list/lists-list.component';
+import { ListsEditComponent } from './components/configuration/lists/lists-edit/lists-edit.component';
+import { ListsNewComponent } from './components/configuration/lists/lists-new/lists-new.component';
+import { ValuesEditComponent } from './components/configuration/lists/values/values-edit/values-edit.component';
+import { ValuesNewComponent } from './components/configuration/lists/values/values-new/values-new.component';
 
 
 
@@ -53,7 +58,12 @@ import { FieldsNewComponent } from './components/configuration/forms/fields/fiel
     FormsNewComponent,
     FormsEditComponent,
     FieldsEditComponent,
-    FieldsNewComponent
+    FieldsNewComponent,
+    ListsListComponent,
+    ListsEditComponent,
+    ListsNewComponent,
+    ValuesEditComponent,
+    ValuesNewComponent
   ],
   imports: [
     BrowserModule,

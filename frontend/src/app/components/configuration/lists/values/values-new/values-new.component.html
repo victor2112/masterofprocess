@@ -11,15 +11,18 @@
         <div class="login-wrapper">
             <mat-card class="box">
                 <mat-card-header>
-                    <mat-card-title><a (click)="goTo('configuration/forms/forms-list')" class="link">Forms</a></mat-card-title>
+                    <mat-card-title><a (click)="goTo('configuration/lists/lists-edit')" class="link">Values</a></mat-card-title>
                 </mat-card-header>
                 <form class="example-form" [formGroup]="form">
                     <mat-card-content>
+
                         <mat-form-field class="example-full-width">
                             <input matInput formControlName="name" placeholder="Name">
                         </mat-form-field>
+
+
                     </mat-card-content>
-                    <button mat-stroked-button color="primary" class="btn-block" (click)="Save()">Create Form</button>
+                    <button mat-stroked-button color="primary" class="btn-block" (click)="create()">Create Value</button>
                 </form>
             </mat-card>
         </div>

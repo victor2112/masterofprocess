@@ -118,10 +118,15 @@ export class BackendService {
     return this.http.get<GeneralResponse>(url, httpOptions);
   }
 
-  // Obtener una lista 
+  // Obtener los values de una lista 
   getListValues(idList: number){
     let url:string = BE_API + '/lists/' + idList ;
     return this.http.get<ListValueResponse>(url, httpOptions);
+  }
+
+  getListName(idList: number){
+    let url:string = BE_API + '/lists/name/' + idList ;
+    return this.http.get<GeneralResponse>(url, httpOptions);
   }
 
   //modulo de users
@@ -183,7 +188,6 @@ export class BackendService {
   updateField(idFormEdit: number, posEdit: number, idForm: number, pos: number, idType: number, name: string, idList: number) {
     let url:string = BE_API + '/fields/' + idFormEdit + '/' + posEdit;
     let param : SaveField = new SaveField(idForm, pos, idType, name, idList);
-    alert(JSON.stringify(param));
     return this.http.put<GeneralResponse>(url, param, httpOptions);
   }
 
@@ -197,17 +201,56 @@ export class BackendService {
     return this.http.get<FieldsList>(url, httpOptions);
   }
     
-
+  // modulo Lists
   getLists(){
     let url:string = BE_API + '/lists';
     return this.http.get<ListsList>(url, httpOptions);
   }
+
+  insertList(name: string){
+    let url:string = BE_API + '/lists/' + name;
+    return this.http.post<GeneralResponse>(url, httpOptions);
+  }
+
+  updateList(idList: number, name: string) {
+    let url:string = BE_API + '/lists/' + idList + '/' + name;
+    return this.http.put<GeneralResponse>(url, httpOptions);
+  }
+
+  deleteList(idList: number){
+    let url:string = BE_API + '/lists/' + idList;
+    return this.http.delete<GeneralResponse>(url, httpOptions);
+  }
+
+
+  getListByIdList(idList: number) {
+    let url:string = BE_API + '/lists/' + idList;
+    return this.http.get<ListValueResponse>(url, httpOptions);
+  }
   
 
 
+  deleteValue(idValue: number) {
+    let url:string = BE_API + '/values/' + idValue;
+    return this.http.delete<GeneralResponse>(url, httpOptions);
+  }
+
+  insertValue(idList: number, name: string){
+    let url:string = BE_API + '/values/' + idList + '/' + name;
+    return this.http.post<GeneralResponse>(url, httpOptions);
+  }
+
+  updateValue(idValue: number, name: string) {
+    let url:string = BE_API + '/values/' + idValue + '/' + name;
+    return this.http.put<GeneralResponse>(url, httpOptions);
+  }
 
 
 
+  getValueByIdValue(idValue: number) {
+    let url:string = BE_API + '/values/' + idValue;
+    return this.http.get<ListValueResponse>(url, httpOptions);
+  }
 
 
 

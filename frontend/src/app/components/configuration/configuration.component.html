@@ -24,13 +24,13 @@
 
 
                         <mat-selection-list [multiple]="false">
-                            <mat-list-option (click)="irA('configuration/users/users-list')">
+                            <mat-list-option (click)="goTo('configuration/users/users-list')">
                                 Users
                             </mat-list-option>
-                            <mat-list-option [disabled]="true">
+                            <mat-list-option [disabled]="false" (click)="goTo('configuration/lists/lists-list')">
                                 Lists
                             </mat-list-option>
-                            <mat-list-option (click)="irA('configuration/forms/forms-list')">
+                            <mat-list-option (click)="goTo('configuration/forms/forms-list')">
                                 Forms
                             </mat-list-option>
                             <mat-list-option [disabled]="true">

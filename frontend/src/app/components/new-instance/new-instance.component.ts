@@ -81,7 +81,7 @@ export class NewInstanceComponent implements OnInit  {
       
       
 
-      this.list = [{nombre: 'Efectivo'}, {nombre: 'Tarjeta'}];
+      this.list = [];
 
 
       
@@ -137,10 +137,10 @@ export class NewInstanceComponent implements OnInit  {
         if (x.status === 0) {
           alert("Error al obtener el estado initial");
         } else {
-              
+          
           
           let idEstado = Number(JSON.parse(JSON.stringify(x.data))[0].idEstado);
-          alert(String(idEstado));
+          //alert(String(idEstado));
     
           
           //alert("Insert de instancia");

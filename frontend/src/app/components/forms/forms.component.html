@@ -28,7 +28,7 @@
                                 <ng-container *ngFor="let list of lists">
                                     <ng-container *ngFor="let valueList of list.values">
                             
-                                        <option [ngValue]="valueList.nombre" *ngIf="list.idList === value.idLista" >{{valueList.nombre}}</option>
+                                        <option [ngValue]="valueList.name" *ngIf="list.idList === value.idLista" >{{valueList.name}}</option>
                         
                                     </ng-container>
                                 </ng-container>

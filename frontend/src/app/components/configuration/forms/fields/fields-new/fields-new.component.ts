@@ -48,11 +48,12 @@ export class FieldsNewComponent implements OnInit {
 
     if (this.form.controls['name'].value.length > 0 && Number(this.form.controls['pos'].value) > 0 &&
         this.form.controls['type'].value > 0) {
-      let idForm = Number(localStorage.getItem('idFormEdit')!)
+      let idForm = Number(localStorage.getItem('idFormEdit')!);
       let idList = 1;
-      if (this.form.controls['type'].value === 3 && this.form.controls['list'].value.length > 0) {
-        idList = this.form.controls['list'].value;
-      }
+      if (this.form.controls['type'].value === 3) {
+        idList = Number(this.form.controls['list'].value);
+        alert(idList);
+      };
 
 
       this.backend.insertField(idForm, 

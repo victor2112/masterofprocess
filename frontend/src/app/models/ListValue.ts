@@ -1,9 +1,11 @@
 export class ListValue {
-    nombre: string;   
+    idValue: number;
+    name: string;   
     
 
-    constructor(name: string) {
-        this.nombre = name;
+    constructor(idValue: number, name: string) {
+        this.idValue = idValue;
+        this.name = name;
     }
 
 }

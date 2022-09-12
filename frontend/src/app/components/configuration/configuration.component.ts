@@ -19,7 +19,7 @@ export class ConfigurationComponent implements OnInit {
 
 
 
-  irA(ruta: string) {
+  goTo(ruta: string) {
       
     if (ruta === "login") {
       localStorage.clear();

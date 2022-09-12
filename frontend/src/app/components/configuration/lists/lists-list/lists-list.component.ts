@@ -1,40 +1,40 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { FormsItem } from 'src/app/models/FormsItem';
+import { ListsItem } from 'src/app/models/ListsItem';
 import { BackendService } from 'src/app/service/backend.service';
 
 @Component({
-  selector: 'app-forms-list',
-  templateUrl: './forms-list.component.html',
-  styleUrls: ['./forms-list.component.scss']
+  selector: 'app-lists-list',
+  templateUrl: './lists-list.component.html',
+  styleUrls: ['./lists-list.component.scss']
 })
-export class FormsListComponent implements AfterViewInit {
+export class ListsListComponent implements AfterViewInit {
 
-  forms: FormsItem[];
+  lists: ListsItem[];
   displayedColumns: string[] = ['name'];
-  dataSource: MatTableDataSource<FormsItem>;
+  dataSource: MatTableDataSource<ListsItem>;
   
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
-  ngAfterViewInit() {
+ ngAfterViewInit() {
     this.dataSource.paginator = this.paginator!;
   }
 
   
   constructor(private backend: BackendService,
     private router: Router) { 
-      this.forms = [];
+      this.lists = [];
       
       // Assign the data to the data source for the table to render
-      this.dataSource = new MatTableDataSource<FormsItem>(this.forms);
+      this.dataSource = new MatTableDataSource<ListsItem>(this.lists);
     }
 
   ngOnInit(): void {
-    this.backend.getFormsList().subscribe(x => {
-      this.forms = x.data;
-      this.dataSource = new MatTableDataSource<FormsItem>(this.forms);
+    this.backend.getLists().subscribe(x => {
+      this.lists = x.data;
+      this.dataSource = new MatTableDataSource<ListsItem>(this.lists);
       this.dataSource.paginator = this.paginator!;
     })
   }
@@ -49,9 +49,8 @@ export class FormsListComponent implements AfterViewInit {
   }
 
   
-  goToEdit(ruta: string, idForm: number, formName: string){
-    localStorage.setItem('idFormEdit', String(idForm)); 
-    localStorage.setItem('formNameEdit', String(formName)); 
+  goToEdit(ruta: string, idList: number){
+    localStorage.setItem('idListEdit', String(idList)); 
     this.router.navigateByUrl('/' + ruta);
   }
 
@@ -67,8 +66,8 @@ export class FormsListComponent implements AfterViewInit {
   }
 
   
-  deleteForm(idForm: number) {
-    this.backend.deleteForm(idForm).subscribe(x => {
+  delete(idList: number) {
+    this.backend.deleteList(idList).subscribe(x => {
       alert(x.message);
       window.location.reload();
     })

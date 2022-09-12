@@ -18,6 +18,11 @@ import { FormsEditComponent } from './components/configuration/forms/forms-edit/
 import { FormsNewComponent } from './components/configuration/forms/forms-new/forms-new.component';
 import { FieldsNewComponent } from './components/configuration/forms/fields/fields-new/fields-new.component';
 import { FieldsEditComponent } from './components/configuration/forms/fields/fields-edit/fields-edit.component';
+import { ListsListComponent } from './components/configuration/lists/lists-list/lists-list.component';
+import { ListsNewComponent } from './components/configuration/lists/lists-new/lists-new.component';
+import { ListsEditComponent } from './components/configuration/lists/lists-edit/lists-edit.component';
+import { ValuesNewComponent } from './components/configuration/lists/values/values-new/values-new.component';
+import { ValuesEditComponent } from './components/configuration/lists/values/values-edit/values-edit.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -37,7 +42,12 @@ const routes: Routes = [
   {path: 'configuration/forms/forms-new', component:FormsNewComponent},
   {path: 'configuration/forms/forms-edit', component:FormsEditComponent},
   {path: 'configuration/forms/fields/fields-new', component:FieldsNewComponent},
-  {path: 'configuration/forms/fields/fields-edit', component:FieldsEditComponent}
+  {path: 'configuration/forms/fields/fields-edit', component:FieldsEditComponent},
+  {path: 'configuration/lists/lists-list', component:ListsListComponent},
+  {path: 'configuration/lists/lists-new', component:ListsNewComponent},
+  {path: 'configuration/lists/lists-edit', component:ListsEditComponent},
+  {path: 'configuration/lists/values/values-new', component:ValuesNewComponent},
+  {path: 'configuration/lists/values/values-edit', component:ValuesEditComponent}
 
 ];
 

@@ -49,7 +49,6 @@ export class FieldsEditComponent implements OnInit {
           break;
       };
 
-      alert(Number(JSON.parse(JSON.stringify(this.field))[0].idLista));
       
       this.form = this.fb.group({
         name: [String(JSON.parse(JSON.stringify(this.field))[0].nombre)],
@@ -91,7 +90,6 @@ export class FieldsEditComponent implements OnInit {
         idList = Number(this.form.controls['list'].value);
       };
 
-      alert(Number(this.form.controls['list'].value));
       this.backend.updateField(
         Number(localStorage.getItem('idFormEdit')), 
         Number(localStorage.getItem('posFieldEdit')), 
@@ -101,16 +99,14 @@ export class FieldsEditComponent implements OnInit {
         this.form.controls['name'].value,
         idList).subscribe(x => {
         
-          if (x.status === 1) {
-            alert(x.message);
-          } else {
+          if (x.status === 0) {
             alert("Error al crear el campo, favor verificar que la posicion este disponible");
           }
 
         }
       )
 
-      this.router.navigateByUrl('/configuration/forms/forms-edit');
+      window.location.reload(); 
 
     } else {
       alert('Error, favor completar todos los campos');
