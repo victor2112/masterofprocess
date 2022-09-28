@@ -23,6 +23,12 @@ import { ListsNewComponent } from './components/configuration/lists/lists-new/li
 import { ListsEditComponent } from './components/configuration/lists/lists-edit/lists-edit.component';
 import { ValuesNewComponent } from './components/configuration/lists/values/values-new/values-new.component';
 import { ValuesEditComponent } from './components/configuration/lists/values/values-edit/values-edit.component';
+import { ProcessesEditComponent } from './components/configuration/processes/processes-edit/processes-edit.component';
+import { ProcessesListComponent } from './components/configuration/processes/processes-list/processes-list.component';
+import { ProcessesNewComponent } from './components/configuration/processes/processes-new/processes-new.component';
+import { StatesNewComponent } from './components/configuration/states/states-new/states-new.component';
+import { StatesEditComponent } from './components/configuration/states/states-edit/states-edit.component';
+import { StatesListComponent } from './components/configuration/states/states-list/states-list.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -47,7 +53,13 @@ const routes: Routes = [
   {path: 'configuration/lists/lists-new', component:ListsNewComponent},
   {path: 'configuration/lists/lists-edit', component:ListsEditComponent},
   {path: 'configuration/lists/values/values-new', component:ValuesNewComponent},
-  {path: 'configuration/lists/values/values-edit', component:ValuesEditComponent}
+  {path: 'configuration/lists/values/values-edit', component:ValuesEditComponent},
+  {path: 'configuration/processes/processes-list', component:ProcessesListComponent},
+  {path: 'configuration/processes/processes-new', component:ProcessesNewComponent},
+  {path: 'configuration/processes/processes-edit', component:ProcessesEditComponent},
+  {path: 'configuration/states/states-list', component:StatesListComponent},
+  {path: 'configuration/states/states-edit', component:StatesEditComponent},
+  {path: 'configuration/states/states-new', component:StatesNewComponent}
 
 ];
 

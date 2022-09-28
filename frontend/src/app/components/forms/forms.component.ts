@@ -94,7 +94,7 @@ export class FormsComponent implements OnInit  {
 
       // Campo para cambiar de estado
       this.forms.addControl("estado", new FormControl("", Validators.required));
-      this.backend.getTransitions(Number(localStorage.getItem('idProceso')), Number(localStorage.getItem('idEstadoInstancia'))).subscribe(x => {
+      this.backend.getTransitionsByForm(Number(localStorage.getItem('idProceso')), Number(localStorage.getItem('idEstadoInstancia'))).subscribe(x => {
         this.transitions = x.data;
       });
     }
@@ -168,7 +168,7 @@ export class FormsComponent implements OnInit  {
           });
 
           if (reload === 1) {
-            this.backend.getTransitions(Number(localStorage.getItem('idProceso')), idState).subscribe(x => {
+            this.backend.getTransitionsByForm(Number(localStorage.getItem('idProceso')), idState).subscribe(x => {
               this.transitions = x.data;
             });
             localStorage.setItem('idEstadoInstancia', idState);

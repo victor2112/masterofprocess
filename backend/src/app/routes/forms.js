@@ -67,7 +67,6 @@ module.exports = (app) => {
     //Actualizar el nombre de un formulario
     app.put('/forms/:idForm/:name', (req, res, next) => {
         let query = `update formularios set nombre = '${req.params.name}' where idFormulario = ${req.params.idForm}`;
-        console.log(query + '2');
         conn.query(query, (err, rows) => {
             if (err) {
                 res.json({ status: 0, data: rows, message: "Error en la db" });

@@ -1,0 +1,55 @@
+<app-menu></app-menu>
+
+<body>
+    <div class="contenido">
+        <p></p>
+        <p></p>
+        <p></p>
+        <div class="login-wrapper">
+            <mat-card class="box">
+                <mat-card-header>
+                    <mat-card-title><a (click)="goTo('configuration/states/states-list')" class="link">States</a></mat-card-title>
+                </mat-card-header>
+                <form class="example-form" [formGroup]="form">
+                    <mat-card-content>
+                        <mat-form-field class="example-full-width">
+                            <input matInput formControlName="stateName" placeholder="Name">
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-select formControlName="processName" placeholder="Process">
+                                <div *ngFor="let process of processesLists">
+                                    <mat-option [value]="process.idProcess">{{process.processName}}</mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-select formControlName="initial" placeholder="Initial">
+                                <div>
+                                    <mat-option [value]="'Si'">Si</mat-option>
+                                </div>
+                                <div>
+                                    <mat-option [value]="'No'">No</mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-select formControlName="final" placeholder="Final">
+                                <div>
+                                    <mat-option [value]="'Si'">Si</mat-option>
+                                </div>
+                                <div>
+                                    <mat-option [value]="'No'">No</mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-card-content>
+
+                    <button mat-stroked-button color="primary" class="btn-block" (click)="update()">Update State</button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</body>

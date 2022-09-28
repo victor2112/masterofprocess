@@ -35,6 +35,12 @@ import { ListsEditComponent } from './components/configuration/lists/lists-edit/
 import { ListsNewComponent } from './components/configuration/lists/lists-new/lists-new.component';
 import { ValuesEditComponent } from './components/configuration/lists/values/values-edit/values-edit.component';
 import { ValuesNewComponent } from './components/configuration/lists/values/values-new/values-new.component';
+import { ProcessesListComponent } from './components/configuration/processes/processes-list/processes-list.component';
+import { ProcessesEditComponent } from './components/configuration/processes/processes-edit/processes-edit.component';
+import { ProcessesNewComponent } from './components/configuration/processes/processes-new/processes-new.component';
+import { StatesNewComponent } from './components/configuration/states/states-new/states-new.component';
+import { StatesEditComponent } from './components/configuration/states/states-edit/states-edit.component';
+import { StatesListComponent } from './components/configuration/states/states-list/states-list.component';
 
 
 
@@ -63,7 +69,13 @@ import { ValuesNewComponent } from './components/configuration/lists/values/valu
     ListsEditComponent,
     ListsNewComponent,
     ValuesEditComponent,
-    ValuesNewComponent
+    ValuesNewComponent,
+    ProcessesListComponent,
+    ProcessesEditComponent,
+    ProcessesNewComponent,
+    StatesNewComponent,
+    StatesEditComponent,
+    StatesListComponent
   ],
   imports: [
     BrowserModule,

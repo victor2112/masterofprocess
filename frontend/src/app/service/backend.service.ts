@@ -22,6 +22,8 @@ import { UsuarioItem } from '../models/UsuarioItem';
 import { FormsList } from '../models/FormsList';
 import { SaveField } from '../models/SaveField';
 import { ListsList } from '../models/ListsList';
+import { ProcessesList } from '../models/ProcessesList';
+import { StatesList } from '../models/StatesList';
 
 
 const BE_API = environment.urlBackEnd;
@@ -49,9 +51,14 @@ export class BackendService {
 
   // Modulo Process
   getProcess(idUsuario: number){
-    let url:string = BE_API + '/processes/' + idUsuario ;
+    let url:string = BE_API + '/process/' + idUsuario ;
     return this.http.get<ProcessList>(url, httpOptions);
   }
+
+
+
+
+
 
   // Modulo Instance
   getInstances(idUsuario: number, idProceso: number){
@@ -78,7 +85,7 @@ export class BackendService {
     return this.http.put<GeneralResponse>(url, httpOptions);
   }
 
-  getTransitions(idProcess: number, idOrigin: number){
+  getTransitionsByForm(idProcess: number, idOrigin: number){
     let url:string = BE_API + '/states/' + idProcess + '/' + idOrigin ;
     return this.http.get<TransitionList>(url, httpOptions);
   }
@@ -114,7 +121,7 @@ export class BackendService {
   }
 
   getInitialState(idProcess: number) {
-    let url:string = BE_API + '/states/' + idProcess ;
+    let url:string = BE_API + '/states/initial/' + idProcess ;
     return this.http.get<GeneralResponse>(url, httpOptions);
   }
 
@@ -253,7 +260,86 @@ export class BackendService {
   }
 
 
+  // Modulo Config Process
+  getProcesses(){
+    let url:string = BE_API + '/processes';
+    return this.http.get<ProcessesList>(url, httpOptions);
+  }
 
+  getProcessesById(idProcess: number){
+    let url:string = BE_API + '/processes/' + idProcess ;
+    return this.http.get<ProcessesList>(url, httpOptions);
+  }
+
+  deleteProcess(idProcess: number) {
+    let url:string = BE_API + '/processes/' + idProcess;
+    return this.http.delete<GeneralResponse>(url, httpOptions);
+  }
+
+  insertProcess(processName: string, idUser: number, idForm: number){
+    let url:string = BE_API + '/processes/' + processName + '/' + idUser + '/' + idForm;
+    return this.http.post<GeneralResponse>(url, httpOptions);
+  }
+
+  updateProcess(idProcess: number, processName: string, idForm: number) {
+    let url:string = BE_API + '/processes/' + idProcess + '/' + processName + '/' + idForm;
+    return this.http.put<GeneralResponse>(url, httpOptions);
+  }
+
+  // Modulo Config States
+  getStates(){
+    let url:string = BE_API + '/states';
+    return this.http.get<StatesList>(url, httpOptions);
+  }
+
+  getStateById(idState: number){
+    let url:string = BE_API + '/states/' + idState ;
+    return this.http.get<StatesList>(url, httpOptions);
+  }
+
+  deleteState(idState: number) {
+    let url:string = BE_API + '/states/' + idState;
+    return this.http.delete<GeneralResponse>(url, httpOptions);
+  }
+
+  insertState(stateName: string, idProceso: number, initial: string, final: string){
+    let url:string = BE_API + '/states/' + stateName + '/' + idProceso + '/' + initial + '/' + final;
+    return this.http.post<GeneralResponse>(url, httpOptions);
+  }
+  
+  updateState(idState: number, stateName: string, idProcess: number, initial: string, final: string) {
+    let url:string = BE_API + '/states/' + idState + '/' + stateName + '/' + idProcess + '/' + initial + '/' + final;
+    return this.http.put<GeneralResponse>(url, httpOptions);
+  }
+
+
+  // Modulo Config States
+  getTransitions(){
+    let url:string = BE_API + '/transitions';
+    return this.http.get<TransitionList>(url, httpOptions);
+  }
+
+  getTransitionById(idTransition: number){
+    let url:string = BE_API + '/transitions/' + idTransition ;
+    return this.http.get<TransitionList>(url, httpOptions);
+  }
+
+  deleteTransition(idTransition: number) {
+    let url:string = BE_API + '/transitions/' + idTransition;
+    return this.http.delete<GeneralResponse>(url, httpOptions);
+  }
+
+  /*
+  insertTransition(stateName: string, idProceso: number, initial: string, final: string){
+    let url:string = BE_API + '/transitions/' + stateName + '/' + idProceso + '/' + initial + '/' + final;
+    return this.http.post<GeneralResponse>(url, httpOptions);
+  }
+  
+  updateTransition(idState: number, stateName: string, idProcess: number, initial: string, final: string) {
+    let url:string = BE_API + '/transitions/' + idState + '/' + stateName + '/' + idProcess + '/' + initial + '/' + final;
+    return this.http.put<GeneralResponse>(url, httpOptions);
+  }
+  */
 
 
 

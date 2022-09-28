@@ -1,18 +1,21 @@
 export class TransitionItem {
-    process: string;
-    origin: number;
-    originName: string;
-    destiny: number;
-    destinyName: string;
-    
+    idTransition: number;
+    origin: string;
+    idOrigin: number;
+    destiny: string;
+    idDestiny: number;
+    processName: string;
+    idProcess: number;
     
 
-    constructor(process: string, origin: number, originName: string, destiny: number, destinyName: string) {
-        this.process = process;
+    constructor(idTransition: number, origin: string, idOrigin: number, destiny: string, idDestiny: number, processName: string, idProcess: number) {
+        this.idTransition = idTransition;
         this.origin = origin;
-        this.originName = originName;
+        this.idOrigin = idOrigin;
         this.destiny = destiny;
-        this.destinyName = destinyName;
+        this.idDestiny = idDestiny;
+        this.processName = processName;
+        this.idProcess = idProcess;
     }
 
 }

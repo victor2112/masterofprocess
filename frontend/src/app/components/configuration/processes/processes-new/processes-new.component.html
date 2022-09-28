@@ -1,0 +1,33 @@
+<app-menu></app-menu>
+
+<body>
+    <div class="contenido">
+        <p></p>
+        <p></p>
+        <p></p>
+        <div class="login-wrapper">
+            <mat-card class="box">
+                <mat-card-header>
+                    <mat-card-title><a (click)="goTo('configuration/processes/processes-list')" class="link">Processes</a></mat-card-title>
+                </mat-card-header>
+                <form class="example-form" [formGroup]="form">
+                    <mat-card-content>
+                        <mat-form-field class="example-full-width">
+                            <input matInput formControlName="processName" placeholder="Name">
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-select formControlName="formName" placeholder="Form">
+                                <div *ngFor="let form of formsLists">
+                                    <mat-option [value]="form.idForm">{{form.name}}</mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-card-content>
+
+                    <button mat-stroked-button color="primary" class="btn-block" (click)="Create()">Create Process</button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</body>

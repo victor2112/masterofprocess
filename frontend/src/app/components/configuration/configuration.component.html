@@ -33,10 +33,10 @@
                             <mat-list-option (click)="goTo('configuration/forms/forms-list')">
                                 Forms
                             </mat-list-option>
-                            <mat-list-option [disabled]="true">
+                            <mat-list-option [disabled]="false" (click)="goTo('configuration/processes/processes-list')">
                                 Processes
                             </mat-list-option>
-                            <mat-list-option [disabled]="true">
+                            <mat-list-option [disabled]="false" (click)="goTo('configuration/states/states-list')">
                                 States
                             </mat-list-option>
                             <mat-list-option [disabled]="true">

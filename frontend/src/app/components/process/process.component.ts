@@ -25,6 +25,7 @@ export class ProcessComponent implements OnInit {
     this.idUsuario = Number(localStorage.getItem('idUsuario'));
     this.backend.getProcess(this.idUsuario).subscribe(x => {
       this.processes = x.data;
+      //alert(JSON.stringify(this.processes));
     })
 
   

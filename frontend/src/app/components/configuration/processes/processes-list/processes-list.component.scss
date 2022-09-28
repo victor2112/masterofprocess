@@ -1,0 +1,152 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido {
+    background-color: #bbbbbbf8;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.processCard {
+    width: 200px;
+    height: 80px;
+    max-width: 250px;
+    cursor: pointer;
+    background-color: #A9D9FF;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.cuadro {
+    width: 80%;
+    background-color: #fcfcfc;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bodyCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.process {
+    width: 90%;
+    background-color: #fcfcfc;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.subcuadro {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    align-content: space-around;
+    justify-content: space-between;
+}
+
+.boton {
+    width: 300px;
+    margin-bottom: 15px;
+    background-color: rgb(102, 102, 102);
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fcfcfc; // rgb(141, 184, 219);
+}
+
+.positronx {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+}
+
+.link {
+    cursor: pointer;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.mat-card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10px;
+}
+
+td,
+th {
+    width: auto;
+}
+
+.mat-header-cell {
+    padding-right: 15px;
+    height: 5px;
+}
+
+.mat-cell {
+    padding-right: 20px;
+}
+
+.contanier {
+    width: 50px;
+}
+
+.headers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mat-elevation-z8 {
+    width: 100%;
+    position: relative;
+    min-height: 200px;
+    max-height: 360px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.columns {
+    padding-right: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

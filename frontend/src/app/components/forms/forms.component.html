@@ -44,7 +44,7 @@
                             <div class="nameValue"><b>Enviar a:</b></div>
                             <select class="fieldName" formControlName="estado" class="fieldValueList">
                                 <ng-container *ngFor="let transition of transitions">
-                                        <option [ngValue]="transition.destiny">{{transition.destinyName}}</option>
+                                        <option [ngValue]="transition.idDestiny">{{transition.destiny}}</option>
                                 </ng-container>
                             </select>
 
