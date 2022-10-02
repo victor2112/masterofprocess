@@ -1,0 +1,51 @@
+<app-menu></app-menu>
+
+<body>
+    <div class="contenido">
+        <p></p>
+        <p></p>
+        <p></p>
+        <div class="login-wrapper">
+            <mat-card class="box">
+                <mat-card-header>
+                    <mat-card-title><a (click)="goTo('configuration/transitions/transitions-list')" class="link">Transitions</a></mat-card-title>
+                </mat-card-header>
+                <form class="example-form" [formGroup]="form">
+                    <mat-card-content>
+                        <mat-form-field class="example-full-width">
+                            <mat-select formControlName="processName" placeholder="Process">
+                                <div *ngFor="let process of processes">
+                                    <mat-option [value]="process.idProcess">{{process.processName}}</mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-select formControlName="origin" placeholder="Origin">
+                                <mat-option [value]="0"> </mat-option>
+                                <div *ngFor="let state of states">
+                                    <div *ngIf="filterStatesOrigin(state.idProcess, state.idState)">
+                                        <mat-option [value]="state.idState">{{state.stateName}}</mat-option>
+                                    </div>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-select formControlName="destiny" placeholder="Destiny">
+                                <mat-option [value]="0"> </mat-option>
+                                <div *ngFor="let state of states">
+                                    <div *ngIf="filterStatesDestiny(state.idProcess, state.idState)">
+                                        <mat-option [value]="state.idState">{{state.stateName}}</mat-option>
+                                    </div>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-card-content>
+
+                    <button mat-stroked-button color="primary" class="btn-block" (click)="Create()">Create Transition</button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</body>

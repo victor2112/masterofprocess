@@ -329,17 +329,16 @@ export class BackendService {
     return this.http.delete<GeneralResponse>(url, httpOptions);
   }
 
-  /*
-  insertTransition(stateName: string, idProceso: number, initial: string, final: string){
-    let url:string = BE_API + '/transitions/' + stateName + '/' + idProceso + '/' + initial + '/' + final;
+  insertTransition(idOrigin: number, idDestiny: number, idProcess: number){
+    let url:string = BE_API + '/transitions/' + idOrigin + '/' + idDestiny + '/' + idProcess;
     return this.http.post<GeneralResponse>(url, httpOptions);
   }
   
-  updateTransition(idState: number, stateName: string, idProcess: number, initial: string, final: string) {
-    let url:string = BE_API + '/transitions/' + idState + '/' + stateName + '/' + idProcess + '/' + initial + '/' + final;
+  updateTransition(idTransition: number, idOrigin: number, idDestiny: number, idProcess: number) {
+    let url:string = BE_API + '/transitions/' + idTransition + '/' + idOrigin + '/' + idDestiny + '/' + idProcess;
     return this.http.put<GeneralResponse>(url, httpOptions);
   }
-  */
+  
 
 
 

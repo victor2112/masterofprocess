@@ -23,8 +23,9 @@ module.exports = (app) => {
             `join estados o on o.idEstado = t.idOrigin ` +
             `join estados d on d.idEstado = t.idDestiny ` +
             `join procesos p on p.idProceso = t.idProcess ` +
-            `where t.idTransition = ${req.params.idTransition}`
-        `order by t.idTransition asc`;
+            `where t.idTransition = ${req.params.idTransition} ` +
+            `order by t.idTransition asc`;
+        //console.log(query);
         conn.query(query, (err, rows, field) => {
             if (err) res.status(400).json({ status: 0, message: "No se pudo obtener informacion" });
             else res.json({ status: 1, data: rows, message: "OK" });
@@ -35,8 +36,10 @@ module.exports = (app) => {
     app.post('/transitions/:idOrigin/:idDestiny/:idProcess', (req, res, next) => {
         let query = `insert into transitions (idOrigin, idDestiny, idProcess) ` +
             `values(${req.params.idOrigin}, ${req.params.idDestiny}, ${req.params.idProcess})`;
+        //console.log(query);
         conn.query(query, (err, rows, cols) => {
             if (err) {
+                console.log(err);
                 res.json({ status: 0, data: rows, message: "Error en la db" });
             } else {
                 res.json({ status: 1, data: rows, message: "Transicion creada satisfactoriamente" });
@@ -48,10 +51,11 @@ module.exports = (app) => {
     //Actualizar una transicion
     app.put('/transitions/:idTransition/:idOrigin/:idDestiny/:idProcess', (req, res, next) => {
         let query = `update transitions ` +
-            `set idOrigin = '${req.params.idOrigin}', ` +
+            `set idOrigin = ${req.params.idOrigin}, ` +
             `idDestiny = ${req.params.idDestiny}, ` +
-            `idProcess = '${req.params.idProcess}', ` +
+            `idProcess = ${req.params.idProcess} ` +
             `where idTransition = ${req.params.idTransition}`;
+        //console.log(query);
         conn.query(query, (err, rows) => {
             if (err) {
                 res.json({ status: 0, data: rows, message: "Error en la db" });

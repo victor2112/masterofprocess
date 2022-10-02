@@ -29,6 +29,9 @@ import { ProcessesNewComponent } from './components/configuration/processes/proc
 import { StatesNewComponent } from './components/configuration/states/states-new/states-new.component';
 import { StatesEditComponent } from './components/configuration/states/states-edit/states-edit.component';
 import { StatesListComponent } from './components/configuration/states/states-list/states-list.component';
+import { TransitionsListComponent } from './components/configuration/transitions/transitions-list/transitions-list.component';
+import { TransitionsNewComponent } from './components/configuration/transitions/transitions-new/transitions-new.component';
+import { TransitionsEditComponent } from './components/configuration/transitions/transitions-edit/transitions-edit.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -59,8 +62,10 @@ const routes: Routes = [
   {path: 'configuration/processes/processes-edit', component:ProcessesEditComponent},
   {path: 'configuration/states/states-list', component:StatesListComponent},
   {path: 'configuration/states/states-edit', component:StatesEditComponent},
-  {path: 'configuration/states/states-new', component:StatesNewComponent}
-
+  {path: 'configuration/states/states-new', component:StatesNewComponent},
+  {path: 'configuration/transitions/transitions-list', component:TransitionsListComponent},
+  {path: 'configuration/transitions/transitions-edit', component:TransitionsEditComponent},
+  {path: 'configuration/transitions/transitions-new', component:TransitionsNewComponent}
 ];
 
 @NgModule({

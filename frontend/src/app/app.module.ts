@@ -41,6 +41,9 @@ import { ProcessesNewComponent } from './components/configuration/processes/proc
 import { StatesNewComponent } from './components/configuration/states/states-new/states-new.component';
 import { StatesEditComponent } from './components/configuration/states/states-edit/states-edit.component';
 import { StatesListComponent } from './components/configuration/states/states-list/states-list.component';
+import { TransitionsEditComponent } from './components/configuration/transitions/transitions-edit/transitions-edit.component';
+import { TransitionsListComponent } from './components/configuration/transitions/transitions-list/transitions-list.component';
+import { TransitionsNewComponent } from './components/configuration/transitions/transitions-new/transitions-new.component';
 
 
 
@@ -75,7 +78,10 @@ import { StatesListComponent } from './components/configuration/states/states-li
     ProcessesNewComponent,
     StatesNewComponent,
     StatesEditComponent,
-    StatesListComponent
+    StatesListComponent,
+    TransitionsEditComponent,
+    TransitionsListComponent,
+    TransitionsNewComponent
   ],
   imports: [
     BrowserModule,
