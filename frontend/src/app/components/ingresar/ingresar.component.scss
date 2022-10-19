@@ -3,9 +3,8 @@
     flex-direction: column;
     align-content: center;
     align-items: center;
-
-
-  }
+    padding-top: 60px;
+}
 
 .cuadro {
     width: 500px;
@@ -15,10 +14,9 @@
     flex-direction: column;
     align-content: space-between;
     justify-content: center;
+}
 
-  }
-
-#select{
+#select {
     width: 320px;
 }
 
@@ -31,15 +29,12 @@
     align-items: baseline;
     align-content: space-around;
     justify-content: space-between;
-  }
+}
 
-  .boton {
+.boton {
     width: 300px;
     margin-bottom: 15px;
-
-
     background-color: rgb(102, 102, 102);
-    
 }
 
 .button {

@@ -68,19 +68,28 @@ module.exports = (app) => {
 
     // Get de todos los Procesos por Usuario
     app.get("/process/:idUsuario", (req, res) => {
-        let query = `Select pro.idProceso idProceso, pro.nombre nombreProceso, count(*) visibles, total.Instancias total ` +
-            `from INSTANCIAS ins ` +
-            `join PROCESOS pro on pro.idProceso = ins.idProceso ` +
-            `join ( ` +
+        let query = `select ` +
+            `a.idProceso idProceso, ` +
+            `a.nombreProceso nombreProceso, ` +
+            `if (c.Instancias is NULL, 0, c.Instancias) visibles, ` +
+            `if (b.Instancias is NULL, 0, b.Instancias) total ` +
+            `from ` +
+            `(select distinct p.idProceso idProceso, p.nombre nombreProceso ` +
+            `from procesos p ` +
+            `join estados e on e.idProceso = p.idProceso ` +
+            `where e.idEstado in (select distinct per.idEstado from permisos per where per.idUsuario = ${req.params.idUsuario})) a ` +
+            `left join ( ` +
             `Select pro.idProceso idProceso, pro.nombre NombreProceso, count(*) Instancias ` +
             `from INSTANCIAS ins ` +
             `join PROCESOS pro on pro.idProceso = ins.idProceso ` +
+            `group by pro.idProceso, pro.nombre) b on a.idproceso = b.idProceso ` +
+            `left join ( ` +
+            `Select pro.idProceso idProceso, pro.nombre NombreProceso, count(*) Instancias ` +
+            `from INSTANCIAS ins ` +
+            `join PROCESOS pro on pro.idProceso = ins.idProceso ` +
+            `where ins.idEstado in (select distinct per.idEstado from permisos per where per.idUsuario = ${req.params.idUsuario}) ` +
             `group by pro.idProceso, pro.nombre ` +
-            `) total on pro.idProceso = total.idProceso ` +
-            `join ESTADOS es on es.idEstado = ins.idEstado ` +
-            `join PERMISOS per on per.IdEstado = es.IdEstado ` +
-            `where per.idUsuario = ${req.params.idUsuario} ` +
-            `group by pro.idProceso, pro.nombre`;
+            `) c on c.idProceso = a.idProceso`;
         conn.query(query, (err, rows, field) => {
             if (err) res.status(400).json({ status: 0, message: "No se pudo obtener informacion" });
             else res.json({ status: 1, data: rows, message: "OK" });

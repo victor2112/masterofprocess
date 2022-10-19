@@ -1,0 +1,23 @@
+<div class="Content">
+
+
+    <div style="display: block; width: 300px; height: 300px;">
+        <canvas baseChart width="150px" height="150px" [data]="pieChartData" [labels]="pieChartLabels" [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend" [chartType]="pieChartType" [colors]="colors">
+        </canvas>
+    </div>
+    <div style="display: block; width: 300px; height: 300px;">
+        <canvas width="150px" height="150px" id="lineChart"></canvas>
+    </div>
+    <!--
+    <div style="display: block; width: 500px; height: 400px;" *ngIf="chartData">
+        <canvas baseChart [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions" [plugins]="chartPlugins" [legend]="chartLegend" [chartType]="chartType" [colors]="chartColors">
+    </canvas>
+    </div>
+
+    
+    <div class="chart-wrapper">
+        <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [colors]="colors" [chartType]=" doughnutChartType">
+        </canvas>
+    </div>
+    -->
+</div>

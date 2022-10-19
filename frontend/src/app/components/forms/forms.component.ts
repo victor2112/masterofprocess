@@ -148,8 +148,9 @@ export class FormsComponent implements OnInit  {
     if (this.forms.controls["estado"].value) {
       //alert(this.forms.controls["estado"].value);
       let idState = this.forms.controls["estado"].value;
+      let idUsuario = Number(localStorage.getItem('idUsuario'));
 
-      this.backend.updateInstanceState(this.idInstance, idState).subscribe(x => {
+      this.backend.updateInstanceState(this.idInstance, idState, idUsuario).subscribe(x => {
         if (x.status === 0) {
           alert("Error al actualizar el formulario, verificar los datos ingresados");
         }
@@ -157,7 +158,7 @@ export class FormsComponent implements OnInit  {
 
         //Verificar si el usuario puede ver el nuevo estado para continuar en el formulario
         let reload = 0;
-        let idUsuario = Number(localStorage.getItem('idUsuario'));
+        
         let idProcess = Number(localStorage.getItem('idProceso'));
         this.backend.getInstances(idUsuario, idProcess).subscribe(x => {
           let instances : InstancesItem[] = x.data;

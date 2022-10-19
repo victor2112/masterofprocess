@@ -17,11 +17,11 @@ module.exports = (app) => {
         })
     });
 
-    app.post('/instances/new/:idProceso/:idEstado', (req, res, next) => {
-        let query = `INSERT INTO INSTANCIAS (IDPROCESO, IDESTADO, FECHACREACION, FECHAMODIFICACION) ` +
+    app.post('/instances/new/:idProceso/:idEstado/:idUsuario', (req, res, next) => {
+        let query = `INSERT INTO INSTANCIAS (IDPROCESO, IDESTADO, FECHACREACION, FECHAMODIFICACION, USUARIOCREADOR, USUARIOMODIFICACION) ` +
             `VALUES ('${req.params.idProceso}', '${req.params.idEstado}', ` +
-            `timestamp(SYSDATE()), timestamp(SYSDATE()))`;
-
+            `timestamp(SYSDATE()), timestamp(SYSDATE()), ${req.params.idUsuario}, ${req.params.idUsuario})`;
+        console.log(query);
         conn.query(query, (err, rows, cols) => {
             if (err) {
                 res.json({ status: 0, data: rows, message: "Error en la db" });
@@ -41,8 +41,12 @@ module.exports = (app) => {
     });
 
 
-    app.put("/instances/:idInstance/:idState", (req, res) => {
-        let query = `update instancias set idEstado = ${req.params.idState} where idInstancia = ${req.params.idInstance}`
+    app.put("/instances/:idInstance/:idState/:idUser", (req, res) => {
+        let query = `update instancias ` +
+            `set idEstado = ${req.params.idState}, ` +
+            `usuarioModificacion = ${req.params.idUser}, ` +
+            `fechaModificacion = timestamp(SYSDATE()) ` +
+            `where idInstancia = ${req.params.idInstance}`
         conn.query(query, (err, rows, cols) => {
             if (err) {
                 res.json({ status: 0, data: rows, message: "Error en la db" });

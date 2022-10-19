@@ -9,6 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 60px;
 }
 
 .processCard {
@@ -37,10 +38,19 @@ body {
     justify-content: space-evenly;
 }
 
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
 .process {
     width: 90%;
     background-color: #fcfcfc;
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .subcuadro {

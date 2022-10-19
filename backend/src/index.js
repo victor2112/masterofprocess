@@ -12,5 +12,8 @@ require('./app/routes/lists')(app);
 require('./app/routes/states')(app);
 require('./app/routes/values')(app);
 require('./app/routes/transitions')(app);
+require('./app/routes/permissions')(app);
+require('./app/routes/categorias')(app);
+require('./app/routes/charts')(app);
 
 app.listen(app.get("PORT"), () => console.log(`Servidor corriendo en puerto ${app.get("PORT")}`));

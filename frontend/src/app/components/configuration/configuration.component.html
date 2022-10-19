@@ -1,6 +1,6 @@
-<app-menu></app-menu>
-
 <body>
+
+    <app-menu></app-menu>
 
     <div class="contenido">
 
@@ -10,6 +10,9 @@
         <mat-card class="process">
             <div class="headers">
                 <mat-card-title><a>Configuration</a></mat-card-title>
+                <a mat-button class="positronx">
+                    <mat-icon>help</mat-icon>
+                </a>
             </div>
 
             <br>
@@ -42,7 +45,7 @@
                             <mat-list-option [disabled]="false" (click)="goTo('configuration/transitions/transitions-list')">
                                 Transitions
                             </mat-list-option>
-                            <mat-list-option [disabled]="true">
+                            <mat-list-option [disabled]="false" (click)="goTo('configuration/permissions/permissions-list')">
                                 Permissions
                             </mat-list-option>
                         </mat-selection-list>

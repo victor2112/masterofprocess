@@ -44,6 +44,11 @@ import { StatesListComponent } from './components/configuration/states/states-li
 import { TransitionsEditComponent } from './components/configuration/transitions/transitions-edit/transitions-edit.component';
 import { TransitionsListComponent } from './components/configuration/transitions/transitions-list/transitions-list.component';
 import { TransitionsNewComponent } from './components/configuration/transitions/transitions-new/transitions-new.component';
+import { PermissionsEditComponent } from './components/configuration/permissions/permissions-edit/permissions-edit.component';
+import { PermissionsListComponent } from './components/configuration/permissions/permissions-list/permissions-list.component';
+import { PermissionsNewComponent } from './components/configuration/permissions/permissions-new/permissions-new.component';
+import { GraficasComponent } from './components/graficas/graficas.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -81,7 +86,11 @@ import { TransitionsNewComponent } from './components/configuration/transitions/
     StatesListComponent,
     TransitionsEditComponent,
     TransitionsListComponent,
-    TransitionsNewComponent
+    TransitionsNewComponent,
+    PermissionsEditComponent,
+    PermissionsListComponent,
+    PermissionsNewComponent,
+    GraficasComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +104,8 @@ import { TransitionsNewComponent } from './components/configuration/transitions/
     MatSelectModule,
     MatIconModule,
     MatMenuModule,
-    BrowserAnimationsModule 
+    BrowserAnimationsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

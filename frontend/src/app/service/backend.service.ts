@@ -24,6 +24,7 @@ import { SaveField } from '../models/SaveField';
 import { ListsList } from '../models/ListsList';
 import { ProcessesList } from '../models/ProcessesList';
 import { StatesList } from '../models/StatesList';
+import { PermissionsList } from '../models/PermissionsList';
 
 
 const BE_API = environment.urlBackEnd;
@@ -90,8 +91,8 @@ export class BackendService {
     return this.http.get<TransitionList>(url, httpOptions);
   }
 
-  updateInstanceState(idInstance: number, idState: number){
-    let url : string = BE_API + '/instances/' + idInstance + '/' + idState;
+  updateInstanceState(idInstance: number, idState: number, idUser: number){
+    let url : string = BE_API + '/instances/' + idInstance + '/' + idState + '/' + idUser;
     return this.http.put<GeneralResponse>(url, httpOptions);
   }
 
@@ -109,8 +110,8 @@ export class BackendService {
     return this.http.get<GeneralResponse>(url, httpOptions);
   }
 
-  insertInstance(idProceso: number, idEstado: number) {
-    let url:string = BE_API + '/instances/new/' + idProceso + '/' + idEstado;
+  insertInstance(idProceso: number, idEstado: number, idUsuario: number) {
+    let url:string = BE_API + '/instances/new/' + idProceso + '/' + idEstado + '/' + idUsuario;
     return this.http.post<GeneralResponse>(url, httpOptions);
   }
 
@@ -121,7 +122,7 @@ export class BackendService {
   }
 
   getInitialState(idProcess: number) {
-    let url:string = BE_API + '/states/initial/' + idProcess ;
+    let url:string = BE_API + '/initialState/' + idProcess ;
     return this.http.get<GeneralResponse>(url, httpOptions);
   }
 
@@ -340,6 +341,59 @@ export class BackendService {
   }
   
 
+  // Modulo Config Permissions
+  getPermissions(){
+    let url:string = BE_API + '/permissions';
+    return this.http.get<PermissionsList>(url, httpOptions);
+  }
+
+  getPermissionById(idPermission: number){
+    let url:string = BE_API + '/permissions/' + idPermission ;
+    return this.http.get<PermissionsList>(url, httpOptions);
+  }
+
+  deletePermission(idPermission: number) {
+    let url:string = BE_API + '/permissions/' + idPermission;
+    return this.http.delete<GeneralResponse>(url, httpOptions);
+  }
+
+  insertPermission(idUser: number, idState: number){
+    let url:string = BE_API + '/permissions/' + idUser + '/' + idState;
+    return this.http.post<GeneralResponse>(url, httpOptions);
+  }
+  
+  updatePermission(idPermission: number, idUser: number, idState: number) {
+    let url:string = BE_API + '/permissions/' + idPermission + '/' + idUser + '/' + idState;
+    return this.http.put<GeneralResponse>(url, httpOptions);
+  }
+
+
+  /* Categorias */
+  getCategorias() {
+    return this.http.get(BE_API + `/categorias`);
+  }
+
+  getCategoria(idCategoria: string){
+   return this.http.get(BE_API + `/categorias/${idCategoria}`);
+  }
+
+  guardarCategoria(categoria: any) {
+    return this.http.post(BE_API + `/addCategoria`, categoria);
+  }
+
+  borrarCategoria(idCategoria: number){
+      return this.http.delete(BE_API + `/deleteCategoria/${idCategoria}`);
+  }
+
+  actualizarCategoria(categoria: any){
+    return this.http.put(BE_API + `/updateCategoria/${categoria['idCategoria']}`, categoria);
+  }
+
+
+  /* Charts */
+  getStateChartData(idProcess: number) {
+    return this.http.get(BE_API + `/charts/states/` + idProcess);
+  }
 
 
 

@@ -1,6 +1,6 @@
-<app-menu></app-menu>
-
 <body>
+
+    <app-menu></app-menu>
     <div class="contenido">
 
         <p></p>
@@ -8,24 +8,49 @@
         <mat-card class="process">
             <div class="headers">
                 <mat-card-title>Processes</mat-card-title>
+                <form class="example-form" [formGroup]="formProcessList">
+                    <select formControlName="processList">
+                        <option>Select Process</option>
+                        <ng-container *ngFor="let process of processes">
+                        
+                            <option>{{process.nombreProceso}}</option>
+                        </ng-container>
+                </select>
+                </form>
             </div>
+            <br><br>
+            <mat-raised-card>
 
-            <mat-raised-card class="cuadro">
+                <div *ngFor="let process of processes">
+                    <div *ngIf="printProcessSelected(process.nombreProceso)">
+                        <hr>
+                        <div class="row">
+                            <mat-card role="button" (click)="getItems(process)" class="processCard">
+                                <div class="card-header card-header-danger">
+                                    <div class="ct-chart" id="completedTasksChart"></div>
+                                </div>
+                                <mat-card-title>
+                                    {{process.nombreProceso}}
+                                </mat-card-title>
+                                <mat-card-subtitle>AVAIBLE: {{process.visibles}}</mat-card-subtitle>
+                                <mat-card-actions align="end">
+                                    <mat-card-item>TOTAL: {{process.total}} </mat-card-item>
+                                </mat-card-actions>
 
+                            </mat-card>
 
-                <mat-card role="button" (click)="getItems(process)" class="processCard" *ngFor="let process of processes">
-                    <div class="card-header card-header-danger">
-                        <div class="ct-chart" id="completedTasksChart"></div>
+                            <!--<div style="display: block; width: 300px; height: 300px;">
+                            <canvas baseChart width="150px" height="150px" id="process.idProceso">
+                            </canvas>
+                        </div>
+                    
+                            -->
+                            <app-graficas></app-graficas>
+                        </div>
                     </div>
-                    <mat-card-title>
-                        {{process.nombreProceso}}
-                    </mat-card-title>
-                    <mat-card-subtitle>AVAIBLE: {{process.visibles}}</mat-card-subtitle>
-                    <mat-card-actions align="end">
-                        <mat-card-item>TOTAL: {{process.total}} </mat-card-item>
-                    </mat-card-actions>
+                </div>
 
-                </mat-card>
+
 
 
 

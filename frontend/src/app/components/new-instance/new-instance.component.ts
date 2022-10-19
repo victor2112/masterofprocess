@@ -130,7 +130,7 @@ export class NewInstanceComponent implements OnInit  {
     this.backend.getInstancesNumber().subscribe(x => {
       this.idInstance = JSON.parse(JSON.stringify(x.data))[0]['instancias'] + 1;
     
-      Number(localStorage.getItem('idFormulario'));
+      //Number(localStorage.getItem('idFormulario'));
       
       
       this.backend.getInitialState(Number(localStorage.getItem('idProceso'))).subscribe(x => {
@@ -145,11 +145,33 @@ export class NewInstanceComponent implements OnInit  {
           
           //alert("Insert de instancia");
           // Insert de instancia
-          this.backend.insertInstance(Number(localStorage.getItem('idFormulario')), idEstado).subscribe(x => {
+          let idUsuario = Number(localStorage.getItem('idFormulario'));
+          this.backend.insertInstance(Number(localStorage.getItem('idProceso')), idEstado, idUsuario).subscribe(x => {
             if (x.status === 0) {
               alert("Error al crear la instancia, verificar los datos ingresados");
             } else {
               localStorage.setItem('idInstancia', JSON.parse(JSON.stringify(x.data))['insertId'] + "");
+
+              this.fields.forEach(element => {
+            
+            
+                let pos = element.pos;
+                let valor = this.forms.controls[element.nombre].value;
+                
+    
+                this.backend.insertFieldsValues(Number(localStorage.getItem('idFormulario')), pos, this.idInstance, valor).subscribe(x => {
+                    if (x.status === 0) {
+                      alert("Error al actualizar el formulario, verificar los datos ingresados");
+                    } else {
+                      //alert(x.message);
+                    }
+                  }
+                )
+                
+              });
+    
+    
+              this.router.navigateByUrl('/instances'); 
             }
           }
 
@@ -160,26 +182,7 @@ export class NewInstanceComponent implements OnInit  {
 
           //alert("Insert de valores_campos");
           // Insert de valores_campos
-          this.fields.forEach(element => {
-            
-            
-            let pos = element.pos;
-            let valor = this.forms.controls[element.nombre].value;
-            
-
-            this.backend.insertFieldsValues(Number(localStorage.getItem('idFormulario')), pos, this.idInstance, valor).subscribe(x => {
-                if (x.status === 0) {
-                  alert("Error al actualizar el formulario, verificar los datos ingresados");
-                } else {
-                  //alert(x.message);
-                }
-              }
-            )
-            
-          });
-
-
-          this.router.navigateByUrl('/instances'); 
+          
 
       
         }

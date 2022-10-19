@@ -32,6 +32,10 @@ import { StatesListComponent } from './components/configuration/states/states-li
 import { TransitionsListComponent } from './components/configuration/transitions/transitions-list/transitions-list.component';
 import { TransitionsNewComponent } from './components/configuration/transitions/transitions-new/transitions-new.component';
 import { TransitionsEditComponent } from './components/configuration/transitions/transitions-edit/transitions-edit.component';
+import { PermissionsEditComponent } from './components/configuration/permissions/permissions-edit/permissions-edit.component';
+import { PermissionsListComponent } from './components/configuration/permissions/permissions-list/permissions-list.component';
+import { PermissionsNewComponent } from './components/configuration/permissions/permissions-new/permissions-new.component';
+import { GraficasComponent } from './components/graficas/graficas.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -65,7 +69,11 @@ const routes: Routes = [
   {path: 'configuration/states/states-new', component:StatesNewComponent},
   {path: 'configuration/transitions/transitions-list', component:TransitionsListComponent},
   {path: 'configuration/transitions/transitions-edit', component:TransitionsEditComponent},
-  {path: 'configuration/transitions/transitions-new', component:TransitionsNewComponent}
+  {path: 'configuration/transitions/transitions-new', component:TransitionsNewComponent},
+  {path: 'configuration/permissions/permissions-list', component:PermissionsListComponent},
+  {path: 'configuration/permissions/permissions-edit', component:PermissionsEditComponent},
+  {path: 'configuration/permissions/permissions-new', component:PermissionsNewComponent},
+  {path: 'graficas', component:GraficasComponent}
 ];
 
 @NgModule({

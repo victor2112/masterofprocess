@@ -1,12 +1,14 @@
 <!-- Toolbar -->
-<mat-toolbar class="app-header">
-    <span class="nav-tool-items">
+<nav>
+    <mat-toolbar class="app-header">
+        <span class="nav-tool-items">
         <a mat-button (click)="irA('configuration')" class="positronx" *ngIf="idTipoUsuario === 1"><mat-icon>build</mat-icon></a>
     </span>
-    <div>
-        <a mat-button target="_blank" (click)="irA('processes')" class="positronx"><img src="../../../assets/img/logo-nobackground.png"></a>
-    </div>
-    <span class="nav-tool-items">
+        <div>
+            <a mat-button target="_blank" (click)="irA('processes')" class="positronx"><img src="../../../assets/img/logo-nobackground.png"></a>
+        </div>
+        <span class="nav-tool-items">
         <a mat-button (click)="irA('login')" class="positronx"><mat-icon>logout</mat-icon></a>
     </span>
-</mat-toolbar>
+    </mat-toolbar>
+</nav>
