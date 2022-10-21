@@ -15,7 +15,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class ProcessComponent implements OnInit {
 
   processes : ProcessItem[];
-  idProcess : number;
   idUsuario : number;
   dataCharts: SingleDataSet[];
   dataLabels: Label[][];
@@ -53,9 +52,6 @@ export class ProcessComponent implements OnInit {
         align: 'end',
       }
     }
-    
-
-    
   };
 
   public pieChartLabels: Label[] = [];
@@ -63,9 +59,9 @@ export class ProcessComponent implements OnInit {
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
-  
+  public pieChartColors: { backgroundColor: any; }[];
+  public idPieChart: number;
   private categoria: any;
-
   // End PieChart
 
   formProcessList:FormGroup;
@@ -76,16 +72,15 @@ export class ProcessComponent implements OnInit {
     private backend: BackendService,
     private router: Router) { 
     this.processes = [];
-    this.idProcess = 0;
     this.idUsuario = 0;
-    //this.charts = [{}];
     this.dataCharts = [];
     this.dataLabels = [];
     this.idUsuario = Number(localStorage.getItem('idUsuario'));
     this.formProcessList = this.fb.group({
       processList: [''],
     });
-    
+    this.idPieChart = 0;
+    this.pieChartColors = [];
     
     
 
@@ -94,95 +89,39 @@ export class ProcessComponent implements OnInit {
   ngOnInit(): void {
     //this.getPieChartData(1);
     this.backend.getProcess(this.idUsuario).subscribe(x => {
-      this.processes = x.data;
-      //alert(JSON.stringify(this.processes));
-      this.processes.forEach(element => {
-      
-        
-        this.backend.getStateChartData(element.idProceso).subscribe(res => {
-          this.categoria = res;
-          for (const cate of this.categoria) {
-            this.pieChartLabels.push(cate.estado);
-            this.pieChartData.push(cate.Instancias);
-            //alert(JSON.stringify(this.pieChartLabels));
-            //alert(JSON.stringify(this.pieChartData));
-              
-          };
-          this.dataCharts[element.idProceso] = this.pieChartData;
-          this.dataLabels[element.idProceso] = this.pieChartLabels;
-
-          /** */
-        let ctx: any = document.getElementById(element.idProceso + "") as HTMLElement;
-        let data = {
-          labels: this.pieChartLabels,
-          datasets: [
-            {
-              label: 'TeamA Score',
-              data: this.pieChartData,
-              backgroundColor: 'blue',
-              borderColor: 'lightblue',
-              fill: false,
-              lineTension: 0,
-              radius: 5,
-            },
-          ],
-        };
-    
-        //options
-        let options: ChartOptions = {
-          responsive: true,
-          title: {
-            display: true,
-            position: 'top',
-            text: 'Completion Graph',
-            fontSize: 18,
-            fontColor: '#111',
-          },
-          legend: {
-            display: true,
-            position: 'bottom',
-            labels: {
-              fontColor: '#333',
-              fontSize: 16,
-            },
-          },
-        };
-    
-        let chart = new Chart(ctx, {
-          type: 'pie',
-          data: data,
-          options: options,
-        });
-
-        
-        /** */
-
-          alert(JSON.stringify(this.dataCharts[element.idProceso]));
-          alert(JSON.stringify(this.dataLabels[element.idProceso]));
-          //this.charts.push({"processId": element.idProceso, "pieChartLabels": this.pieChartLabels, "pieChartData": this.pieChartData});
-          this.pieChartLabels = [];
-          this.pieChartData = [];
-        });
-        
-      });
+      this.processes = x.data; 
     })
-    //
-
-    
-    
   }
 
-  printProcessSelected(processSelected: string) {
+  printProcessSelected(idProcess: number, processSelected: string) {
     const mensaje = this.formProcessList.controls['processList'].value;
     //alert(mensaje?.innerHTML);
     //alert(mensaje);
     if (mensaje === processSelected) {
+      if (this.idPieChart != idProcess) {
+        this.updatePieChart(idProcess);
+        return true;
+      } else {
       return true;
+      }
     } else {
       return false;
-    }
-    
+    };
   }
+
+  updatePieChart(idProcess: number){
+    this.pieChartLabels = [];
+    this.pieChartData = [];
+    this.backend.getStateChartData(idProcess).subscribe(res => {
+      this.categoria = res;
+      for (const cate of this.categoria) {
+        this.pieChartLabels.push(cate.estado);
+        this.pieChartData.push(cate.Instancias); 
+      }
+    });
+    this.idPieChart = idProcess;
+  }
+
 
 
   irA(ruta: string) {
@@ -197,10 +136,11 @@ export class ProcessComponent implements OnInit {
 
   getItems(data: any){
     let process = JSON.parse(JSON.stringify(data));
-    this.idProcess = process["idProceso"];
     localStorage.setItem('idProceso', process["idProceso"]);
     localStorage.setItem('nombreProceso', process["nombreProceso"]);
     this.irA('/instances');
   }
+
+ 
 
 }

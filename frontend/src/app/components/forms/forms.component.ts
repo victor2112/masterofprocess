@@ -143,12 +143,18 @@ export class FormsComponent implements OnInit  {
       
     });
 
-    
+    let idUsuario = Number(localStorage.getItem('idUsuario'));
+    this.backend.updateInstanceModificationData(this.idInstance, idUsuario).subscribe(x => {
+      if (x.status === 0) {
+        alert("Error al actualizar los datos de modificacion para la instancia");
+      }
+    });
+
     // Registro de transicion de estado si fue modificado
     if (this.forms.controls["estado"].value) {
       //alert(this.forms.controls["estado"].value);
       let idState = this.forms.controls["estado"].value;
-      let idUsuario = Number(localStorage.getItem('idUsuario'));
+      
 
       this.backend.updateInstanceState(this.idInstance, idState, idUsuario).subscribe(x => {
         if (x.status === 0) {
@@ -179,13 +185,8 @@ export class FormsComponent implements OnInit  {
           } else {
             this.router.navigateByUrl('/instances'); 
           }
-
-          
-
         })
-
-      }
-    )
+      })
     }
     
     

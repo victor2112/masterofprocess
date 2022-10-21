@@ -23,9 +23,13 @@ export class GraficasComponent {
       20
     ]
   ];
-
+  
   doughnutChartType: ChartType = 'pie';
   */
+
+  public idProcess: number;
+
+
   colors: Color[] = [
     {
       backgroundColor: [
@@ -113,27 +117,7 @@ export class GraficasComponent {
     //this.chartData = [];
     //this.chartColors = [];
     this.pieChartColors = [];
-    this.categoriaService.getStateChartData(1).subscribe(res => {
-      this.categoria = res;
-      //alert(JSON.stringify(this.categoria));
-      for (const cate of this.categoria) {
-        this.pieChartLabels.push(cate.estado);
-        this.pieChartData.push(cate.Instancias);
-        let color = {backgroundColor: this.getRandomColor()};
-        //alert(JSON.stringify(color));
-        //this.pieChartColors.push(color);
-        
-        //this.colors[0]["backgroundColor"] = ["green,"];
-        
-        
-        
-        
-      }
-      //this.colors[0]["backgroundColor"].push('green');
-      //alert("colors: " + JSON.stringify(this.colors) );
-     
-      
-    });
+    this.idProcess = Number(localStorage.getItem('idProceso'));
     
   }
 
@@ -149,6 +133,18 @@ export class GraficasComponent {
   
 
   ngAfterViewInit() {
+    this.idProcess = Number(localStorage.getItem('idProceso'));
+    this.categoriaService.getStateChartData(this.idProcess).subscribe(res => {
+      this.categoria = res;
+      //alert(JSON.stringify(this.categoria));
+      for (const cate of this.categoria) {
+        this.pieChartLabels.push(cate.estado);
+        this.pieChartData.push(cate.Instancias);
+        let color = {backgroundColor: this.getRandomColor()};
+      }
+    });
+
+
     let ctx: any = document.getElementById('lineChart') as HTMLElement;
     var data = {
       labels: ['match1', 'match2', 'match3', 'match4', 'match5'],

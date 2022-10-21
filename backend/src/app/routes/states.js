@@ -11,7 +11,7 @@ module.exports = (app) => {
             `join procesos p on p.idProceso = t.idProcess ` +
             `where t.idProcess = ${req.params.idProcess} ` +
             `and t.idOrigin = ${req.params.idOrigin}`;
-        console.log(query);
+        //console.log(query);
         conn.query(query, (err, rows, field) => {
             if (err) res.status(400).json({ status: 0, message: "No se pudo obtener informacion" });
             else res.json({ status: 1, data: rows, message: "OK" });

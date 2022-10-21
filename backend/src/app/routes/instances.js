@@ -56,4 +56,19 @@ module.exports = (app) => {
         });
     });
 
+    app.put("/instances/:idInstance/:idUser", (req, res) => {
+        let query = `update instancias ` +
+            `set usuarioModificacion = ${req.params.idUser}, ` +
+            `fechaModificacion = timestamp(SYSDATE()) ` +
+            `where idInstancia = ${req.params.idInstance}`;
+        //console.log(query);
+        conn.query(query, (err, rows, cols) => {
+            if (err) {
+                res.json({ status: 0, data: rows, message: "Error en la db" });
+            } else {
+                res.json({ status: 1, data: rows, message: "Estado de instancia modificado satisfactoriamente" });
+            }
+        });
+    });
+
 }

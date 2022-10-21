@@ -96,6 +96,11 @@ export class BackendService {
     return this.http.put<GeneralResponse>(url, httpOptions);
   }
 
+  updateInstanceModificationData(idInstance: number, idUser: number){
+    let url : string = BE_API + '/instances/' + idInstance + '/' + idUser;
+    return this.http.put<GeneralResponse>(url, httpOptions);
+  }
+
 
 
 

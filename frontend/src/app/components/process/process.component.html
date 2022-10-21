@@ -11,8 +11,7 @@
                 <form class="example-form" [formGroup]="formProcessList">
                     <select formControlName="processList">
                         <option>Select Process</option>
-                        <ng-container *ngFor="let process of processes">
-                        
+                        <ng-container *ngFor="let process of processes" >
                             <option>{{process.nombreProceso}}</option>
                         </ng-container>
                 </select>
@@ -22,13 +21,11 @@
             <mat-raised-card>
 
                 <div *ngFor="let process of processes">
-                    <div *ngIf="printProcessSelected(process.nombreProceso)">
+                    <div *ngIf="printProcessSelected(process.idProceso, process.nombreProceso)">
                         <hr>
                         <div class="row">
                             <mat-card role="button" (click)="getItems(process)" class="processCard">
-                                <div class="card-header card-header-danger">
-                                    <div class="ct-chart" id="completedTasksChart"></div>
-                                </div>
+
                                 <mat-card-title>
                                     {{process.nombreProceso}}
                                 </mat-card-title>
@@ -39,13 +36,14 @@
 
                             </mat-card>
 
-                            <!--<div style="display: block; width: 300px; height: 300px;">
-                            <canvas baseChart width="150px" height="150px" id="process.idProceso">
-                            </canvas>
-                        </div>
-                    
-                            -->
+
+                            <div *ngIf="pieChartData" style="display: block; width: 300px; height: 300px;">
+                                <canvas baseChart width="150px" height="150px" [data]="pieChartData" [labels]="pieChartLabels" [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend" [chartType]="pieChartType" [colors]="colors">
+                                </canvas>
+                            </div>
+                            <!--
                             <app-graficas></app-graficas>
+                            -->
                         </div>
                     </div>
                 </div>
