@@ -25,6 +25,7 @@ import { ListsList } from '../models/ListsList';
 import { ProcessesList } from '../models/ProcessesList';
 import { StatesList } from '../models/StatesList';
 import { PermissionsList } from '../models/PermissionsList';
+import { LogList } from '../models/LogList';
 
 
 const BE_API = environment.urlBackEnd;
@@ -192,15 +193,15 @@ export class BackendService {
   }
 
   //modulo Fields
-  insertField(idForm: number, pos: number, idType: number, name: string, idList: number) {
+  insertField(idForm: number, pos: number, idType: number, name: string, idList: number, externalProcess: number, externalIdForm: number, externalPos: number, externalKeyPos: number, externalKeyValue: number) {
     let url:string = BE_API + '/fields/new';
-    let param : SaveField = new SaveField(idForm, pos, idType, name, idList);
+    let param : SaveField = new SaveField(idForm, pos, idType, name, idList, externalProcess, externalIdForm, externalPos, externalKeyPos, externalKeyValue);
     return this.http.post<GeneralResponse>(url, param, httpOptions);
   }
 
-  updateField(idFormEdit: number, posEdit: number, idForm: number, pos: number, idType: number, name: string, idList: number) {
+  updateField(idFormEdit: number, posEdit: number, idForm: number, pos: number, idType: number, name: string, idList: number, externalProcess: number, externalIdForm: number, externalPos: number, externalKeyPos: number, externalKeyValue: number) {
     let url:string = BE_API + '/fields/' + idFormEdit + '/' + posEdit;
-    let param : SaveField = new SaveField(idForm, pos, idType, name, idList);
+    let param : SaveField = new SaveField(idForm, pos, idType, name, idList, externalProcess, externalIdForm, externalPos, externalKeyPos, externalKeyValue);
     return this.http.put<GeneralResponse>(url, param, httpOptions);
   }
 
@@ -319,7 +320,7 @@ export class BackendService {
   }
 
 
-  // Modulo Config States
+  // Modulo Config Transitions
   getTransitions(){
     let url:string = BE_API + '/transitions';
     return this.http.get<TransitionList>(url, httpOptions);
@@ -400,6 +401,10 @@ export class BackendService {
     return this.http.get(BE_API + `/charts/states/` + idProcess);
   }
 
+  /* Charts */
+  getCompletionChartData(idProcess: number) {
+    return this.http.get(BE_API + `/charts/completion/` + idProcess);
+  }
 
 
   getComic() {
@@ -407,6 +412,18 @@ export class BackendService {
     return this.http.get<ComicList>(url, httpOptions);
   }
 
+  /* Logs */
+  getLogs(idInstance: number){
+    let url:string = BE_API + '/log/' + idInstance;
+    return this.http.get<LogList>(url, httpOptions);
+  }
+
+  insertLog(idInstance: number, idUser: number, idLogType: number, oldData: string, newData: string){
+    let url:string = BE_API + '/log/' + idInstance + '/' + idUser + '/' + idLogType + '/' + oldData + '/' +  newData;
+    //alert(url);
+    return this.http.post<GeneralResponse>(url, httpOptions);
+  }
+  
   
 
   insertUsuario(nombre: string, departamento: string, usuario: string, password: string, email: string) {

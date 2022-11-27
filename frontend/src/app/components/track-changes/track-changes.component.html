@@ -1,0 +1,98 @@
+<body>
+
+    <app-menu></app-menu>
+    <div class="contenido">
+
+        <p></p>
+
+
+        <mat-card class="process">
+            <div class="headers">
+                <mat-card-title>
+
+                    <a (click)="irA('processes')" class="link">Processes</a> >> <a (click)="irA('instances')" class="link">Instances</a> >> Forms
+
+                </mat-card-title>
+                <span>
+                    <a mat-button (click)="irA('forms')" ><mat-icon>keyboard_return</mat-icon></a>
+                </span>
+            </div>
+
+            <br>
+
+            <mat-card-title>{{processName}} >> Instance {{idInstance}} </mat-card-title>
+            <div class="table">
+                <mat-raised-card>
+
+                    <mat-form-field appearance="standard">
+                        <mat-label>Filter</mat-label>
+                        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Ventas" #input>
+                    </mat-form-field>
+
+                    <div class="mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSource" matSort>
+
+                            <!-- Modif Date Column -->
+                            <ng-container matColumnDef="Modification Date">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Modification Date </th>
+                                <td mat-cell *matCellDef="let row" class="mat-cell">{{row.modificationDate}}</td>
+                            </ng-container>
+
+                            <!-- User Name Column -->
+                            <ng-container matColumnDef="User">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> User Name </th>
+                                <td mat-cell *matCellDef="let row" class="mat-cell"> {{row.userName}} </td>
+                            </ng-container>
+
+                            <!-- Modification Type Column -->
+                            <ng-container matColumnDef="Modification Type">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Modification Type </th>
+                                <td mat-cell *matCellDef="let row" class="mat-cell"> {{row.typeName}} </td>
+                            </ng-container>
+
+                            <!-- Before Column -->
+                            <ng-container matColumnDef="Before">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Before </th>
+                                <td mat-cell *matCellDef="let row" class="mat-cell"> {{row.oldData}} </td>
+                            </ng-container>
+
+                            <!-- After Column -->
+                            <ng-container matColumnDef="After">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> After </th>
+                                <td mat-cell *matCellDef="let row" class="mat-cell"> {{row.newData}} </td>
+                            </ng-container>
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                            <!-- Row shown when there is no matching data. -->
+                            <tr class="mat-row" *matNoDataRow>
+                                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                            </tr>
+
+                        </table>
+
+                        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of row">
+                        </mat-paginator>
+                    </div>
+
+
+
+
+
+
+                </mat-raised-card>
+
+            </div>
+
+
+
+
+
+
+
+        </mat-card>
+
+    </div>
+</body>

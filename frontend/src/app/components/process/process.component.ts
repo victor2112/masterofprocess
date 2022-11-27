@@ -12,13 +12,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './process.component.html',
   styleUrls: ['./process.component.scss']
 })
-export class ProcessComponent implements OnInit {
+export class ProcessComponent {
 
   processes : ProcessItem[];
   idUsuario : number;
   dataCharts: SingleDataSet[];
   dataLabels: Label[][];
-  //charts: [{}];
+  
   /* Charts */
   colors: Color[] = [
     {
@@ -39,6 +39,7 @@ export class ProcessComponent implements OnInit {
 
   // Start PieChart
   public pieChartOptions: ChartOptions = {
+    responsive: true,
     title: {
       display: true,
       position: 'top',
@@ -46,6 +47,7 @@ export class ProcessComponent implements OnInit {
       fontSize: 18,
       fontColor: '#111',
     },
+    
     plugins: {
       datalabels: {
         anchor: 'end',
@@ -86,12 +88,29 @@ export class ProcessComponent implements OnInit {
 
   }
 
+  
+
   ngOnInit(): void {
     //this.getPieChartData(1);
     this.backend.getProcess(this.idUsuario).subscribe(x => {
       this.processes = x.data; 
     })
   }
+
+  getRandomColor() {
+    var color = Math.floor(0x1000000 * Math.random()).toString(16);
+    return '#' + ('000000' + color).slice(-6);
+  }
+  
+  public lineChartData = {};
+  /* Line Chart */
+  chart: any;
+
+    
+
+
+
+  
 
   printProcessSelected(idProcess: number, processSelected: string) {
     const mensaje = this.formProcessList.controls['processList'].value;
@@ -118,8 +137,163 @@ export class ProcessComponent implements OnInit {
         this.pieChartLabels.push(cate.estado);
         this.pieChartData.push(cate.Instancias); 
       }
+
+
+      /** */
+      var dataX: any[] = [];
+      var dataMR: any[] = [];
+
+      var labelsTemp: any[] = [];
+
+      this.backend.getCompletionChartData(idProcess).subscribe(res => {
+        this.categoria = res;
+        var ucl: any[] = [];
+        var lcl: any[] = [];
+        var lc: any[] = [];
+        var lcMR: any[] = [];
+
+        for (const cate of this.categoria) {
+          dataX.push(cate.Instancias);
+          labelsTemp.push(cate.fechaModificacion.substring(0,10));
+          
+        }
+
+        // Calculate LC, UCL and LCL
+        var sumX = 0;
+        var sumMR = 0;
+
+
+        // dataMR and sum of dataX
+        dataX.forEach((element, index) => {
+          sumX += element;
+          if (dataMR.length === 0 ) {
+            dataMR.push(0);
+          } else {
+            dataMR.push(Math.abs(element - dataX[index-1]));
+            sumMR += dataMR[index];
+          };
+        });
+
+        var e2 = 2.659;
+
+
+        // LC Graph MR
+        for (const entry of dataMR) {
+          lcMR.push((sumMR / (dataMR.length - 1)));
+          
+        };
+
+        // LC Graph X
+        for (const entry of dataX) {
+          lc.push((sumX / dataX.length));
+          
+        };
+        
+        dataX.forEach((element, index) => {
+          ucl.push(lc[index] + (e2 * lcMR[index]));
+          let lclEntry = lc[index] - (e2 * lcMR[index]);
+          if (lclEntry > 0) {
+            lcl.push(lclEntry);
+          } else {
+            lcl.push(0);
+          }
+          
+        });
+        
+
+
+        
+        var dataSetTemp = [{
+            label: 'Completion',
+            data: dataX,
+            backgroundColor: 'blue',
+            borderColor: 'lightblue',
+            fill: false,
+            lineTension: 0,
+            radius: 5,
+          },{
+            label: 'LC',
+            data: lc,
+            backgroundColor: 'red',
+            borderColor: 'red',
+            fill: false,
+            lineTension: 0,
+            radius: 5,
+          },{
+            label: 'UCL',
+            data: ucl,
+            backgroundColor: 'yellow',
+            borderColor: 'yellow',
+            fill: false,
+            lineTension: 0,
+            radius: 5,
+          },{
+            label: 'LCL',
+            data: lcl,
+            backgroundColor: 'green',
+            borderColor: 'lightgreen',
+            fill: false,
+            lineTension: 0,
+            radius: 5,
+          },
+        ];
+
+
+        let ctx: any = document.getElementById('lineChart') as HTMLElement;
+        this.lineChartData = {
+          labels: labelsTemp,
+          datasets: dataSetTemp,
+        };
+
+
+        
+
+        //options
+        var options: ChartOptions = {
+          responsive: true,
+          title: {
+            display: true,
+            position: 'top',
+            text: 'Completion Graph',
+            fontSize: 18,
+            fontColor: '#111',
+          },
+          legend: {
+            display: true,
+            position: 'bottom',
+            labels: {
+              fontColor: '#333',
+              fontSize: 16,
+            },
+          },
+        };
+
+        var chart = new Chart(ctx, {
+          type: 'line',
+          data: this.lineChartData,
+          options: options,
+        });
+        /** */
+
+
+      });
+
+      
+
+
+
+      //alert(JSON.stringify(dataSetTemp));
+      //alert(JSON.parse(JSON.stringify(this.lineChartData)).datasets + (JSON.stringify(dataSetTemp)));
+      //alert(JSON.stringify(JSON.parse(JSON.stringify(this.lineChartData)).datasets));
+      //JSON.parse(JSON.stringify(this.lineChartData))['datasets'][1] = dataSetTemp;
+
+      //alert(this.pieChartData.length);
+      
     });
     this.idPieChart = idProcess;
+    
+
+    
   }
 
 

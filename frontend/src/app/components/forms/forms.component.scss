@@ -4,7 +4,7 @@ body {
 }
 
 .contenido {
-    background-color: #bbbbbbf8;
+    background-color: #44546a;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -62,7 +62,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border-color: #bbbbbbf8;
+    border-color: #44546a;
 }
 
 .app-header {
@@ -147,4 +147,11 @@ hr.solid {
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+.headers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }

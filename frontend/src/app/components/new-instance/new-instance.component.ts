@@ -52,7 +52,10 @@ export class NewInstanceComponent implements OnInit  {
 
           this.forms.addControl(nombre, new FormControl("", Validators.required));
           
-          
+          //Revision de campos externos para deshabilitarlos
+          if (element.tipo === 'external') {
+            this.forms.controls[nombre].disable();
+          }
           
           localStorage.setItem('idFormulario', element.idFormulario + "");      
           
@@ -128,7 +131,12 @@ export class NewInstanceComponent implements OnInit  {
   save() {
     // Obtener idInstancia max + 1
     this.backend.getInstancesNumber().subscribe(x => {
-      this.idInstance = JSON.parse(JSON.stringify(x.data))[0]['instancias'] + 1;
+      if (JSON.parse(JSON.stringify(x.data))[0]['instancias'] == null) {
+        this.idInstance = 1;
+      } else {
+        this.idInstance = JSON.parse(JSON.stringify(x.data))[0]['instancias'] + 1;
+      }
+      
     
       //Number(localStorage.getItem('idFormulario'));
       
@@ -145,7 +153,7 @@ export class NewInstanceComponent implements OnInit  {
           
           //alert("Insert de instancia");
           // Insert de instancia
-          let idUsuario = Number(localStorage.getItem('idFormulario'));
+          let idUsuario = Number(localStorage.getItem('idUsuario'));
           this.backend.insertInstance(Number(localStorage.getItem('idProceso')), idEstado, idUsuario).subscribe(x => {
             if (x.status === 0) {
               alert("Error al crear la instancia, verificar los datos ingresados");
@@ -163,7 +171,14 @@ export class NewInstanceComponent implements OnInit  {
                     if (x.status === 0) {
                       alert("Error al actualizar el formulario, verificar los datos ingresados");
                     } else {
-                      //alert(x.message);
+                      //alert("inserta en log");
+                      this.backend.insertLog(this.idInstance, idUsuario, 3, ' ', valor).subscribe(x => {
+                        if (x.status === 0) {
+                          alert("Error al insertar datos en la instancia");
+                        } else {
+                          //alert(x.message);
+                        }
+                      });
                     }
                   }
                 )

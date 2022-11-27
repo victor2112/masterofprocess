@@ -42,7 +42,7 @@ export class ValuesNewComponent implements OnInit {
         this.form.controls['name'].value).subscribe(x => {
         
           if (x.status === 1) {
-            alert(x.message);
+            //alert(x.message);
             this.router.navigateByUrl('/configuration/lists/lists-edit');
           } else {
             alert("Error al crear el campo, favor verificar que la posicion este disponible");

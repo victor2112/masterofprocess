@@ -4,12 +4,45 @@ module.exports = (app) => {
 
     // Get de campos de un formulario por instancia
     app.get("/forms/:idInstancia", (req, res) => {
-        let query = `select vc.idFormulario idFormulario, c.pos pos, c.nombre nombre, vc.valor valor, tc.nombre tipo, c.idLista idLista ` +
+        /*let query = `select vc.idFormulario idFormulario, c.pos pos, c.nombre nombre, vc.valor valor, tc.nombre tipo, c.idLista idLista ` +
             `from valores_campos vc ` +
             `join campos c on (c.idFormulario = vc.idFormulario and c.pos = vc.pos) ` +
             `join tipo_campo tc on c.idTipo = tc.idTipo ` +
             `where vc.idInstancia = ${req.params.idInstancia} ` +
             `order by pos`;
+        */
+
+        let query = `select vc.idFormulario idFormulario, c.pos pos, c.nombre nombre, ` +
+            `case ` +
+            `when tc.idTipo = 5 then vce.valor ` +
+            `else vc.valor  ` +
+            `end as 'valor',  ` +
+            `tc.nombre tipo, c.idLista idLista  ` +
+            `from valores_campos vc  ` +
+            `join campos c on (c.idFormulario = vc.idFormulario and c.pos = vc.pos) ` +
+            `join tipo_campo tc on c.idTipo = tc.idTipo  ` +
+            `left join (select d.*  ` +
+            `    from valores_campos d ` +
+            `    where d.idInstancia = ${req.params.idInstancia}) vk on vk.idFormulario = c.idFormulario ` +
+            `left join (select a.valor valor, b.valor externalKeyValue, a.idFormulario idFormulario, a.pos pos ` +
+            `    from valores_campos a, ` +
+            `    (select vcb.*  ` +
+            `        from valores_campos vcb   ` +
+            `        where vcb.idInstancia = (select min(vcbb.idInstancia) from valores_campos vcbb ` +
+            `                            where vcbb.valor = (select vcbbb.valor from valores_campos vcbbb ` +
+            `                                where vcbbb.pos = vcb.pos /*c.externalKeyValue*/ ` +
+            `                                and vcbbb.idInstancia = ${req.params.idInstancia})) ` +
+            `        ) b  ` +
+            `    where a.idInstancia = (select min(vcbb.idInstancia) from valores_campos vcbb ` +
+            `                            where vcbb.valor = (select vcbbb.valor from valores_campos vcbbb ` +
+            `                                where vcbbb.pos = b.pos /*c.externalKeyValue*/ ` +
+            `                                and vcbbb.idInstancia = ${req.params.idInstancia})) /*vc.valor*/ ` +
+            `    ) vce on (vce.externalKeyValue = vk.valor and (vce.pos = c.externalPos or vce.pos = c.pos)) ` +
+            `where vc.idInstancia = ${req.params.idInstancia} ` +
+            `and (vk.pos = c.externalKeyValue or vk.pos = c.pos) ` +
+            `and vce.valor is not null ` +
+            `and case when tc.idTipo = 5 then c.externalPos = vce.pos else 1 end ` +
+            `order by c.pos`;
         conn.query(query, (err, rows, field) => {
             if (err) res.status(400).json({ status: 0, message: "No se pudo obtener informacion" });
             else res.json({ status: 1, data: rows, message: "OK" });

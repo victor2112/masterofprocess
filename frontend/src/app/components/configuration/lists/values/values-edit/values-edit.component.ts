@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FieldsItem } from 'src/app/models/FieldsItem';
-import { ListsItem } from 'src/app/models/ListsItem';
 import { ListValue } from 'src/app/models/ListValue';
 import { BackendService } from 'src/app/service/backend.service';
 

@@ -37,16 +37,22 @@
                             </mat-card>
 
 
-                            <div *ngIf="pieChartData" style="display: block; width: 300px; height: 300px;">
+                            <div *ngIf="this.pieChartData.length > 0" style="display: block; width: 300px; height: 300px;">
                                 <canvas baseChart width="150px" height="150px" [data]="pieChartData" [labels]="pieChartLabels" [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend" [chartType]="pieChartType" [colors]="colors">
                                 </canvas>
                             </div>
-                            <!--
-                            <app-graficas></app-graficas>
-                            -->
+
+                            <div *ngIf="lineChartData" style="display: block; width: 300px; height: 300px;">
+                                <canvas width="150px" height="150px" id="lineChart"></canvas>
+                            </div>
+
+
                         </div>
+
                     </div>
+
                 </div>
+
 
 
 

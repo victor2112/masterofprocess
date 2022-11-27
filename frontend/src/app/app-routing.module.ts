@@ -36,6 +36,7 @@ import { PermissionsEditComponent } from './components/configuration/permissions
 import { PermissionsListComponent } from './components/configuration/permissions/permissions-list/permissions-list.component';
 import { PermissionsNewComponent } from './components/configuration/permissions/permissions-new/permissions-new.component';
 import { GraficasComponent } from './components/graficas/graficas.component';
+import { TrackChangesComponent } from './components/track-changes/track-changes.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -73,7 +74,9 @@ const routes: Routes = [
   {path: 'configuration/permissions/permissions-list', component:PermissionsListComponent},
   {path: 'configuration/permissions/permissions-edit', component:PermissionsEditComponent},
   {path: 'configuration/permissions/permissions-new', component:PermissionsNewComponent},
-  {path: 'graficas', component:GraficasComponent}
+  {path: 'graficas', component:GraficasComponent},
+  {path: 'trackChanges', component:TrackChangesComponent}
+
 ];
 
 @NgModule({

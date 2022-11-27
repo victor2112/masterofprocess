@@ -20,6 +20,25 @@ module.exports = (app) => {
         });
     });
 
+    app.get('/charts/completion/:idProcess', (req, res) => {
+        const sql = `Select DATE(ins.fechaModificacion) fechaModificacion, count(*) Instancias ` +
+            `from INSTANCIAS ins ` +
+            `join PROCESOS pro on pro.idProceso = ins.idProceso ` +
+            `join estados e on e.idEstado = ins.idEstado ` +
+            `where pro.idProceso = ${req.params.idProcess} ` +
+            `and e.final = 'Si' ` +
+            `group by DATE(ins.fechaModificacion) ` +
+            `order by DATE(ins.fechaModificacion) asc`;
+        conn.query(sql, (err, results) => {
+            if (err) throw err;
+            if (results.length > 0) {
+                res.json(results);
+            } else {
+                res.json({ message: 'No hay resultados' });
+            }
+        });
+    });
+
 
 
 }

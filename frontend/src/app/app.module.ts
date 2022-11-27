@@ -49,6 +49,7 @@ import { PermissionsListComponent } from './components/configuration/permissions
 import { PermissionsNewComponent } from './components/configuration/permissions/permissions-new/permissions-new.component';
 import { GraficasComponent } from './components/graficas/graficas.component';
 import { ChartsModule } from 'ng2-charts';
+import { TrackChangesComponent } from './components/track-changes/track-changes.component';
 
 
 
@@ -90,7 +91,8 @@ import { ChartsModule } from 'ng2-charts';
     PermissionsEditComponent,
     PermissionsListComponent,
     PermissionsNewComponent,
-    GraficasComponent
+    GraficasComponent,
+    TrackChangesComponent
   ],
   imports: [
     BrowserModule,

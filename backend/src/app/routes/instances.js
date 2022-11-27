@@ -21,7 +21,7 @@ module.exports = (app) => {
         let query = `INSERT INTO INSTANCIAS (IDPROCESO, IDESTADO, FECHACREACION, FECHAMODIFICACION, USUARIOCREADOR, USUARIOMODIFICACION) ` +
             `VALUES ('${req.params.idProceso}', '${req.params.idEstado}', ` +
             `timestamp(SYSDATE()), timestamp(SYSDATE()), ${req.params.idUsuario}, ${req.params.idUsuario})`;
-        console.log(query);
+        //console.log(query);
         conn.query(query, (err, rows, cols) => {
             if (err) {
                 res.json({ status: 0, data: rows, message: "Error en la db" });

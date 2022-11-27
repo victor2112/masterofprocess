@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from 'src/app/service/backend.service';
 import { Router } from '@angular/router';
-import { InstancesItem } from 'src/app/models/InstancesItem';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-
-
+import { LogItem } from 'src/app/models/LogItem';
 
 @Component({
-  selector: 'app-instances',
-  templateUrl: './instances.component.html',
-  styleUrls: ['./instances.component.scss']
+  selector: 'app-track-changes',
+  templateUrl: './track-changes.component.html',
+  styleUrls: ['./track-changes.component.scss']
 })
-export class InstancesComponent implements AfterViewInit  {
-  displayedColumns: string[] = ['idInstancia', 'Estado', 'Fecha Creacion', 'Fecha Modificacion'];
-  dataSource: MatTableDataSource<InstancesItem>;
-  instances : InstancesItem[];
+export class TrackChangesComponent implements AfterViewInit  {
+  displayedColumns: string[] = ['Modification Date', 'User', "Modification Type", "Before", "After"];
+  dataSource: MatTableDataSource<LogItem>;
+  logs : LogItem[];
   idProcess : number;
   idUsuario : number;
   idInstance : number;
@@ -32,7 +30,7 @@ export class InstancesComponent implements AfterViewInit  {
 
   constructor(private backend: BackendService,
     private router: Router) { 
-      this.instances = [];
+      this.logs = [];
       this.idInstance = 0;
       this.idUsuario = 0;
       this.idProcess = 0;
@@ -40,7 +38,7 @@ export class InstancesComponent implements AfterViewInit  {
       
    
       // Assign the data to the data source for the table to render
-      this.dataSource = new MatTableDataSource<InstancesItem>(this.instances);
+      this.dataSource = new MatTableDataSource<LogItem>(this.logs);
    
 
     }
@@ -49,9 +47,10 @@ export class InstancesComponent implements AfterViewInit  {
       this.processName = localStorage.getItem('nombreProceso')!;
       this.idUsuario = Number(localStorage.getItem('idUsuario'));
       this.idProcess = Number(localStorage.getItem('idProceso'));
-      this.backend.getInstances(this.idUsuario, this.idProcess).subscribe(x => {
-        this.instances = x.data;
-        this.dataSource = new MatTableDataSource<InstancesItem>(this.instances);
+      this.idInstance = Number(localStorage.getItem('idInstancia'));;
+      this.backend.getLogs(this.idInstance).subscribe(x => {
+        this.logs = x.data;
+        this.dataSource = new MatTableDataSource<LogItem>(this.logs);
 
         this.dataSource.paginator = this.paginator!;
       })

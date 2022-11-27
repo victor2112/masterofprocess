@@ -5,7 +5,16 @@
 
         <p></p>
         <mat-card class="process">
-            <mat-card-title><a (click)="irA('processes')" class="link">Processes</a> >> <a (click)="irA('instances')" class="link">Instances</a> >> Forms </mat-card-title>
+            <div class="headers">
+                <mat-card-title>
+
+                    <a (click)="irA('processes')" class="link">Processes</a> >> <a (click)="irA('instances')" class="link">Instances</a> >> Forms
+
+                </mat-card-title>
+                <span>
+                    <a mat-button (click)="irA('trackChanges')" ><mat-icon>track_changes</mat-icon></a>
+                </span>
+            </div>
             <br>
             <div class="login-wrapper">
                 <mat-card class="box">
@@ -34,6 +43,7 @@
                                 </ng-container>
                             </select>
 
+                            <input type="text" formControlName="{{value.nombre}}" class="fieldValue" *ngIf="value.tipo === 'external'" value="{{value.valor}}">
 
 
                         </div>

@@ -28,6 +28,7 @@
                                 <mat-option [value]="2">Number</mat-option>
                                 <mat-option [value]="3">List</mat-option>
                                 <mat-option [value]="4">Date</mat-option>
+                                <mat-option [value]="5">External</mat-option>
                             </mat-select>
                         </mat-form-field>
 
@@ -39,6 +40,39 @@
                             </mat-select>
                         </mat-form-field>
 
+                        <mat-form-field class="example-full-width" *ngIf="isExternal()">
+                            <mat-select formControlName="external" placeholder="Process">
+                                <div *ngFor="let process of processes">
+                                    <div *ngIf="filterProcess(process.idForm)">
+                                        <mat-option [value]="process.idProcess" (click)="updateExternalFields(process.idForm)">{{process.processName}}</mat-option>
+                                    </div>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width" *ngIf="isExternal()">
+                            <mat-select formControlName="externalField" placeholder="Field">
+                                <div *ngFor="let field of externalFields">
+                                    <mat-option [value]="field.pos">{{field.nombre}}</mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width" *ngIf="isExternal()">
+                            <mat-select formControlName="externalKey" placeholder="External Key">
+                                <div *ngFor="let field of externalFields">
+                                    <mat-option [value]="field.pos">{{field.nombre}}</mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width" *ngIf="isExternal()">
+                            <mat-select formControlName="formKey" placeholder="Form Key">
+                                <div *ngFor="let field of field">
+                                    <mat-option [value]="field.pos">{{field.nombre}}</mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
 
                     </mat-card-content>
                     <button mat-stroked-button color="primary" class="btn-block" (click)="create()">Create Field</button>
