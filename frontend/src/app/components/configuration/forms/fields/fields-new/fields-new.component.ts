@@ -95,10 +95,10 @@ export class FieldsNewComponent implements OnInit {
 
 
       let externalIdForm = Number(localStorage.getItem('idExternalFormEdit'));
-      let externalProcess = this.form.controls['external'].value;
-      let externalPos = this.form.controls['externalField'].value;
-      let externalKeyPos = this.form.controls['externalKey'].value;
-      let externalKeyValue = this.form.controls['formKey'].value;
+      let externalProcess = Number(this.form.controls['external'].value);
+      let externalPos = Number(this.form.controls['externalField'].value);
+      let externalKeyPos = Number(this.form.controls['externalKey'].value);
+      let externalKeyValue = Number(this.form.controls['formKey'].value);
 
       this.backend.insertField(idForm, 
         this.form.controls['pos'].value,

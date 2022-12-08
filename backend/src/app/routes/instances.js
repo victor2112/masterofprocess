@@ -10,7 +10,8 @@ module.exports = (app) => {
             `join ESTADOS es on es.idEstado = ins.idEstado ` +
             `join PERMISOS per on per.IdEstado = es.IdEstado ` +
             `where per.idUsuario = ${req.params.idUsuario} ` +
-            `and pro.idProceso = ${req.params.idProceso}`;
+            `and pro.idProceso = ${req.params.idProceso} ` +
+            `order by ins.idInstancia desc`;
         conn.query(query, (err, rows, field) => {
             if (err) res.status(400).json({ status: 0, message: "No se pudo obtener informacion" });
             else res.json({ status: 1, data: rows, message: "OK" });

@@ -12,7 +12,7 @@ module.exports = (app) => {
             `order by pos`;
         */
 
-        let query = `select vc.idFormulario idFormulario, c.pos pos, c.nombre nombre, ` +
+        let query = `select distinct vc.idFormulario idFormulario, c.pos pos, c.nombre nombre, ` +
             `case ` +
             `when tc.idTipo = 5 then vce.valor ` +
             `else vc.valor  ` +
@@ -42,6 +42,8 @@ module.exports = (app) => {
             `and (vk.pos = c.externalKeyValue or vk.pos = c.pos) ` +
             `and vce.valor is not null ` +
             `and case when tc.idTipo = 5 then c.externalPos = vce.pos else 1 end ` +
+            `and case when tc.idTipo = 5 then length(vce.valor) > 0 else length(vc.valor) > 0 end ` +
+            `and length(vce.externalKeyValue) > 0 ` +
             `order by c.pos`;
         conn.query(query, (err, rows, field) => {
             if (err) res.status(400).json({ status: 0, message: "No se pudo obtener informacion" });

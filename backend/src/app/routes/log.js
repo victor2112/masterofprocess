@@ -18,7 +18,8 @@ module.exports = (app) => {
             `join log_type lt on lt.idLogType = l.idLogType ` +
             `left join estados eo on eo.idEstado = l.oldData ` +
             `left join estados en on en.idEstado = l.newData ` +
-            `where idInstance =  ${req.params.idInstance}`;
+            `where idInstance =  ${req.params.idInstance} ` +
+            `order by l.idLog desc`;
         conn.query(query, (err, rows, field) => {
             if (err) res.status(400).json({ status: 0, message: "No se pudo obtener informacion" });
             else res.json({ status: 1, data: rows, message: "OK" });
