@@ -90,7 +90,7 @@ export class FieldsNewComponent implements OnInit {
       let idList = 1;
       if (this.form.controls['type'].value === 3) {
         idList = Number(this.form.controls['list'].value);
-        alert(idList);
+        //alert(idList);
       };
 
 

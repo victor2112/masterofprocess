@@ -166,6 +166,7 @@ export class NewInstanceComponent implements OnInit  {
                 let pos = element.pos;
                 let valor = this.forms.controls[element.nombre].value;
                 
+                //alert(valor);
     
                 this.backend.insertFieldsValues(Number(localStorage.getItem('idFormulario')), pos, this.idInstance, valor).subscribe(x => {
                     if (x.status === 0) {

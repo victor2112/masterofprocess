@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { BackendService } from 'src/app/service/backend.service';
 import { Router } from '@angular/router';
 import { Values } from 'src/app/models/Values';
@@ -7,12 +7,15 @@ import { Lists } from 'src/app/models/Lists';
 import { TransitionItem } from 'src/app/models/TransitionItem';
 import { InstancesItem } from 'src/app/models/InstancesItem';
 
+
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.scss']
 })
 export class FormsComponent implements OnInit  {
+
+
 
   values : Values[];
   idInstance : number;
@@ -33,8 +36,9 @@ export class FormsComponent implements OnInit  {
       this.transitions = [];
       this.idState = Number(localStorage.getItem('idEstadoInstancia'));;
       this.forms= this.fb.group({
-        
+
       });
+
 
       this.idInstance = Number(localStorage.getItem('idInstancia'));
       
@@ -42,7 +46,7 @@ export class FormsComponent implements OnInit  {
       this.backend.getForms(this.idInstance).subscribe(x => {
         this.values = x.data;
 
-   
+        //alert(JSON.stringify(this.values));
         
 
         this.values.forEach(element => {
@@ -130,8 +134,6 @@ export class FormsComponent implements OnInit  {
   
 
 
-
-
   save() {
     
     this.values.forEach(element => {
@@ -178,10 +180,15 @@ export class FormsComponent implements OnInit  {
 
     // Registro de transicion de estado si fue modificado
     if (this.forms.controls["estado"].value) {
+      
+      
+      
+      
+      
       //alert(this.forms.controls["estado"].value);
       let idState = this.forms.controls["estado"].value;
       let idUsuario = Number(localStorage.getItem('idUsuario'));
-
+      
       this.backend.updateInstanceState(this.idInstance, idState, idUsuario).subscribe(x => {
         if (x.status === 0) {
           alert("Error al actualizar el formulario, verificar los datos ingresados");
@@ -225,4 +232,3 @@ export class FormsComponent implements OnInit  {
   }
 
 }
-
